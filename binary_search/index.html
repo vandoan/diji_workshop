@@ -1,0 +1,297 @@
+<!HTML>
+<head>
+	<title>Diji WS</title>
+	<link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC" rel="stylesheet">
+	<title>Diji Workshop</title>
+	<link rel="icon" type="image/png"  href="/scissor.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet">
+	  <meta charset="UTF-8">
+	  <meta name="description" content="Coding tutorials on binary search and JavaScript">
+	  <meta name="keywords" content="Binary search, JavaScript, tutorials, coding">
+	  <meta name="author" content="Diji Workshop">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		a {
+			color: #000000;
+			text-decoration: none;
+			transition: all .3s;
+		}
+		a:hover { opacity: .7; }
+		.title {
+			font-size: 4em;
+		    margin-bottom: 50px;
+    		letter-spacing: 4px;
+		}
+		.diji {
+		    font-size: 1.5em;
+		    word-spacing: 4px;
+    		margin-bottom: 20px;
+		    letter-spacing: 4px;
+		}
+		.main-view {
+	    	margin: auto;
+		    max-width: 600px;
+	    	margin-top: 60px;
+	    	margin-bottom: 100px;
+	    	font-family: 'Lato', sans-serif;
+		}
+		header {
+		    opacity: 0.8;
+		    font-weight: 300;
+		    margin-top: 0.5em;
+		    text-align: center;
+		    word-spacing: 10px;
+		}
+		.summary {
+			font-weight: 300;
+		    line-height: 26px;
+		    letter-spacing: 1.5px;
+		}
+		.names {
+		    text-align: justify;
+		}
+		.names span {
+			opacity: 0.1;
+			font-size: 12px;
+			transition: all .4s;
+			font-family: 'IM Fell English SC', serif;
+		}
+		.tldr { font-size: 2em; }
+		span.loop-1{
+			opacity: 0.3;
+			font-size: 12px;
+		}
+		span.loop-2 {
+			opacity: 0.5;
+			font-size: 14px;
+		}
+		span.loop-3 {
+			opacity: 0.6;
+			font-size: 18px;
+		}
+		span.loop-4 {
+			opacity: 0.8;
+			font-size: 22px;
+		}
+		span.loop-5 {
+			opacity: 1;
+			font-size: 26px;
+		}
+		.source {
+		    opacity: .6;
+			font-size: 0.7em;
+		    font-weight: 300;
+		    letter-spacing: 1px
+		}
+		.interactive-view {
+		    margin: 60px 0 40px;
+		}
+		input, button {
+		    opacity: 0.6;
+		    font-size: 1em;
+		    padding: 7px 16px;
+		    letter-spacing: 3px;
+		    transition: all .3s;
+			font-family: 'Lato', sans-serif;
+   		}
+   		button {
+   		    padding: 9px 20px;
+		    margin-left: 14px;
+		    letter-spacing: 2px;	
+   		}
+   		input:hover, button:hover { opacity: .9; }
+   		button:hover { cursor: pointer; }
+
+   		.detail-view {
+		    font-weight: 300;
+   			margin-top: 60px;
+   			line-height: 26px;
+    		letter-spacing: 1px;
+   		}
+   		.details {
+    		opacity: .8;
+		    font-size: 18px;
+    		font-weight: 400;
+   		}
+   		.magic {
+		    opacity: 0.7;
+   			font-size: 25px;
+		    margin-top: 80px;
+		    margin-bottom: 30px;
+		    letter-spacing: 5px;
+   		}
+   		pre {
+		    opacity: 0.8;
+   		    font-size: 11px;
+		    letter-spacing: 1px;
+   		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class='main-view'>
+
+		<header>
+			<div class='diji'><a href='/'>Diji workshop</a></div>
+			<div class='title'>Binary Search</div>
+		</header>
+
+		<div class="summary">
+			<div class='tldr'>tl;dr</div>
+			<p>
+				1) Get the first letter of the name.<br>
+				2) Get the midway point.<br>
+					3) Go left or right (binary). (Left!)<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;- Still searching?<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Yes. Loop back to step 2. <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- No. We're done!<br>
+			</p>
+			<br>
+			<p>Violahhh. <br>Try it out below. Each click is a loop, another search inside the search. Type in another name and see where that goes.</p>
+
+		</div>
+
+		<div class="interactive-view">
+			<div class="itat-view">
+				<input type="text" name="oleName" value="Beatrice"/>
+				<button onclick="binarySearch();">fine dat ole ladi's nem</button>
+			</div>
+		</div>
+
+		<div class="names">
+			<p id='names'>
+			</p>
+		</div>
+
+		<div class='source'><a href='https://nameberry.com/list/248/Old-Lady-Names?all=1' target="_blank">Dank u, nameberry.com</a>!
+		</div>
+
+		<div class='detail-view'>
+			<p class='details'>Details:
+			<p>
+			Well, it's not as simple, a little more complex when it comes to JavaScript. Basically, the code needs
+			a starting point and an end point, and it works from that. If the letter is in the first half, go left, else go right. Update the start and end. Repeat.
+			</p>
+			<p>
+			With normal size data sets, like a list of 100 items or so, the binary sort is not as important. A basic loop would be as fast and as good, as both would take a millisecond or so to execute. What, you couldn't tell!? However, when you're dealing with a hugmongious data set, let's say over 100,000 items, searching for a name in a tome of data, yeah, then it's important.
+			</p>
+			<p>Inspect the page for the full code. The core of it is below.</p>
+			<p>
+			- ciao.
+			</p>
+		</div>
+
+		<div class='magic'>The Magic</div>
+		
+		<pre>
+function binarySearch(){
+	console.log(loopCounter);
+	var name = document.getElementsByName('oleName')[0].value;
+		
+	if(name != currentName){ // check if new name or blank
+		console.log('Clear.');
+		resetBS();
+		currentName = name;
+
+		if(name == ""){ return false; }
+
+	}
+
+	if(loopCounter >= 5 ){ return false; } // Max out of loops
+
+	var firstLetter = name[0].toUpperCase();
+	loopCounter ++;
+	console.log("loop: " + loopCounter);
+
+	if(firstLetter < names[halfway][0]){
+		endIndex = halfway;
+		halfway = Math.floor((startIndex + endIndex) / 2);
+	} else {
+		startIndex = halfway;
+		halfway = Math.floor((startIndex + endIndex) / 2);
+	}
+
+	
+	for(let i = startIndex; i < endIndex; i++){ // update the opacity;
+		document.getElementById("name-"+i).className = "loop-"+loopCounter;
+	}
+}
+
+		</pre>
+	</div>
+</body>
+
+
+
+<script>
+
+	loopCounter = 0;
+	var	startIndex = 0;
+	var currentName = "";
+	var oldLadyNames = "Ada Adelaide Adelia Adeline Agatha Agnes Alberta Alma Anastasia Antonia Augusta Beatrice Blanche Celia Clara Constance Cora Cordelia Cornelia Dora Dorothea Edith Elsa Elsie Esther Etta Eudora Eugenia Evelyn Fay Flora Florence Frances Frederica Geraldine Harriet Hazel Helen Henrietta Hermione Ida Imogen Iris Ivy Josephine Kay Lavinia Leonora Letitia Lucasta Lucinda Lucretia Mabel Mamie Martha Matilda Maude May Mildred Millicent Minerva Miriam Muriel Myrtle Olive Opal Pearl Penelope Priscilla Prudence Ruth Theodora Ursula Vera Viola Vivian Wilhelmina Winifred Zenobia";
+	const names = oldLadyNames.split(" "); // split up string into digestible parts
+	var endIndex = names.length;
+	var halfway = Math.floor(names.length / 2); // 39
+
+
+
+	function binarySearch(){
+		console.log(loopCounter);
+		var name = document.getElementsByName('oleName')[0].value;
+			
+		if(name != currentName){ // check if new name or blank
+			console.log('Clear.');
+			resetBS();
+			currentName = name;
+
+			if(name == ""){ return false; }
+
+		}
+
+		if(loopCounter >= 5 ){ return false; } // Max out of loops
+
+		var firstLetter = name[0].toUpperCase();
+		loopCounter ++;
+		console.log("loop: " + loopCounter);
+
+		if(firstLetter < names[halfway][0]){
+			endIndex = halfway;
+			halfway = Math.floor((startIndex + endIndex) / 2);
+		} else {
+			startIndex = halfway;
+			halfway = Math.floor((startIndex + endIndex) / 2);
+		}
+
+		
+		for(let i = startIndex; i < endIndex; i++){ // update the opacity;
+			document.getElementById("name-"+i).className = "loop-"+loopCounter;
+		}
+	}
+
+	function buildNameDiv(){ // BUILD NAMES DIV
+		divNames = document.getElementById("names");
+		for(let i = 0; i < names.length; i++){
+			divNames.innerHTML += `<span id='name-${i}'>${names[i]} </span`;
+		}
+	}
+	buildNameDiv();
+
+	function resetBS(){
+		var spans = document.getElementById("names").getElementsByTagName('span');
+		for(let i = 0; i < spans.length; i++){
+			spans[i].className = "";
+		}
+
+		loopCounter = 0;
+		startIndex = 0;
+		endIndex = names.length;
+		halfway = Math.floor(names.length / 2);
+	}
+
+</script>
+
+
+
+</HTML>
