@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<head>
+	<title>Diji workshop</title>
+	<link rel="icon" type="image/png"  href="/scissor.ico" />
+ 	<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+	<style>
+	 	
+a {
+	color: #000;
+	opacity: 0.8;
+	text-decoration: none;
+	transition: all .4s;
+}
+a:hover { opacity: 0.5; }
+.header-view {
+	margin: 40px 0 20px;
+}
+.diji {
+	opacity: 0.7;
+ 	font-size: 0.7em;
+	letter-spacing: 4px;
+	font-family: 'Lato', sans-serif;
+}
+.diji span { float: right; margin: 0 89px 0 0; }
+.title {
+	font-size: 2.4em;
+	text-align: right;
+	letter-spacing: 0.1em;
+	font-family: 'Abril Fatface', cursive;
+}
+.intro {
+    line-height: 1.6em;
+    margin: 4em 0 4em 0;
+    margin: 4em 0 4em 0;
+    letter-spacing: 1.4px;
+	font-family: 'Lato', sans-serif;
+}
+.main-view {
+    width: 600px;
+    margin: 0 auto 8em auto;
+}
+.city {
+    font-size: 5em;
+    letter-spacing: 8px;
+    margin: 0 0 40px 0;
+	font-family: 'Abril Fatface', cursive;
+}
+.place-view {
+	text-align: center;
+}
+.column {
+    width: 49.6%;
+    text-align: center;
+    display: inline-block;
+}
+
+.view-meanwhile {
+    left: 0;
+    top: 25em;
+    width: 200px;
+    padding: 2.4em 0;
+    text-align: center;
+    position: absolute;
+	display: inline-block;
+    background-color: aliceblue;
+    border-radius: 0 0.5em 0.5em 0;
+    font-family: 'Abril Fatface', cursive;
+}
+#mw-city {
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+#mw-ctry {
+    font-size: 2em;
+    margin: 0 0 .4em 0;
+    letter-spacing: 4px;
+}
+.mw-temp {
+    margin: 0.5em;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+	display: inline-block;
+}
+.form {
+    right: 0;
+    top: 18em;
+    padding: 1em;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    background-color: gold;
+    border-radius: 0.3em 0 0 0.3em;
+    font-family: 'Abril Fatface', cursive;
+}
+.input-label {
+    border: 0;
+	font-size: 0.9em;
+    margin: 0 0 0.5em 0;
+    letter-spacing: .07em;
+}
+input {
+	border: 0;
+    width: 9em;
+    font-size: 0.8em;
+    text-align: center;
+    border-radius: .5em;
+    padding: 0.3em 0.5em;
+    letter-spacing: 0.5em;
+    font-family: 'Abril Fatface', cursive;
+}
+button {
+	border: 0;
+    height: 58px;
+    display: block;
+    margin: 1em auto;
+    text-align: center;
+    transition: all .3s;
+    padding: 0.8em 2.8em;
+    border-radius: 0.4em;
+    letter-spacing: 0.2em;
+    background-color: white;
+    font-family: 'Abril Fatface', cursive;
+}
+button:hover { opacity: 0.8; cursor: pointer; }
+.columns {
+    font-family: 'Abril Fatface', cursive;
+}
+.header {
+    font-size: 1.4em;
+    margin: 0 0 0.6em 0;
+    line-height: 1.2em;
+    letter-spacing: .05em;
+}
+.temp {
+    font-size: 3.8em;
+    letter-spacing: 0.03em;
+}
+.wear {
+	background-size: contain;
+	background-repear: no-repeat;
+}
+
+
+
+	</style>
+
+
+</head>
+
+
+
+<body>
+
+<div>
+</div>
+<div class="main-view">
+	<div class="header-view">
+		<div class="title">What to Wear</div>
+		<a href="/"><div class="diji"><span>a Diji workshop thingi</div></a>
+	</div>
+
+	<div class='intro'>
+		<p>
+		A practical guide to what to wear according to weather.
+		<br/>Pop in your zip and press "gimmeh weather" and you shall receive. 
+		</p>
+	</div>
+
+	<div class='place-view'>
+		<div class='weather'>
+			<div id='weather' class="sun">sun image</div>
+		</div>
+		<div class='city'>San Diego</div>
+	</div>
+
+	<div class="wardrobe-view">
+		<div class='columns'>
+			<div class='column col-1'>
+				<div class="header">Today's<br>Low</div>
+				<div id='temp-low' class='temp'>76</div>
+				<div id='attire-low'>
+					<div class="wear sandles"></div>
+					<div class="wear sunglasses"></div>
+					<div class="wear shorts"></div>
+				</div>
+			</div>
+			<div class='column'>
+				<div class='column col-1'>
+				<div class="header">Today's<br>High</div>
+				<div id='temp-hight' class='temp'>86</div>
+				<div id='attire-high'>
+					<div class="wear sombrero"></div>
+					<div class="wear tank top"></div>
+					<div class="wear bikini"></div>
+					<div class="wear speedo"></div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class='view-meanwhile'>
+		<div class='mw-weather'>
+			<div id='mw-weather' class="sun"></div>
+		</div>
+		<div class='mw-place'>
+			<div id='mw-city'>Stockholm,</div>
+			<div id="mw-ctry">Sweden</div>
+			<div id='mw-temp'>
+				<div id='mw-low' class='mw-temp'>low: 24</div><div id='mw-high' class='mw-temp'>high: 53</div>
+			</div>
+		</div>
+		<div class='mw-wear'>
+			<div id='mw-wear'>
+				<div class='parka'>parka img</div>
+				<div class='earmuffs'>earmuffs img</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="form">
+		<div class='input-label'>Za zip zere</div>
+		<input name='zip' maxlength="5" placeholder='90210'/>
+		<button>gimmeh<br>weather</button>
+	</div>
+
+</div>
+
+
+<script>
+	var intialZips = [];
+	var intlZips = []; // international zips
+
+	var coldWear = ['parka','puffy','eskimo','sweater','mittens','cape','mufflers','scarf','boots','beanie','gloves','vest','thermals','goggles'];
+	var regWear = ['shirt','suit','dress','tshirt','bandana','bowtie','necklace','lipstick','jeans','polo','heels','boots','purse'];
+	var hotWear = ['snorkel','bikini','speedo','sunglasses','tank','visor','sandles','shorts','middrift','hula'];
+	var rainWear = ['snorkel','umbrella','raincoat','rainboot','sponge','bikini','shorts','sandles','cowboyHat'];
+	var weather = ['sun','cloud','rain','thunder','snow'];
+
+
+
+</script>
+
+
+
+</body> 
+ </html>
