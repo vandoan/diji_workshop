@@ -103,6 +103,8 @@ function splitArray(parentArr){ // the magic
 	arrayUpdate.push(parentArr.slice(0,midpoint));		// push one half
 	arrayUpdate.push(parentArr.slice(midpoint));			// push other half
 	parentArr = arrayUpdate;
+
+	split = true;
 //console.log(parentArr);
 
 	return parentArr;

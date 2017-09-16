@@ -6,7 +6,7 @@
  	<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 
-	<style>
+<style>
 	 	
 a {
 	color: #000;
@@ -32,6 +32,7 @@ a:hover { opacity: 0.5; }
 	font-family: 'Abril Fatface', cursive;
 }
 .intro {
+    font-size: 0.87em;
     line-height: 1.6em;
     margin: 4em 0 4em 0;
     margin: 4em 0 4em 0;
@@ -49,6 +50,7 @@ a:hover { opacity: 0.5; }
 	font-family: 'Abril Fatface', cursive;
 }
 .place-view {
+    margin: 8em auto 5em auto;
 	text-align: center;
 }
 .column {
@@ -91,28 +93,34 @@ a:hover { opacity: 0.5; }
     position: absolute;
     text-align: center;
     display: inline-block;
-    background-color: gold;
+    background-color: #FFF;
     border-radius: 0.3em 0 0 0.3em;
     font-family: 'Abril Fatface', cursive;
 }
 .input-label {
     border: 0;
+    opacity: .7;
+    color: #000;
 	font-size: 0.9em;
     margin: 0 0 0.5em 0;
     letter-spacing: .07em;
 }
 input {
 	border: 0;
-    width: 9em;
+    color: #FFF;
+    width: 6.8em;
     font-size: 0.8em;
     text-align: center;
     border-radius: .5em;
-    padding: 0.3em 0.5em;
     letter-spacing: 0.5em;
+    padding: 0.3em 0.5em 0.3em 0.9em;
+    background-color: rgba(82, 179, 217, 0.6);
     font-family: 'Abril Fatface', cursive;
 }
+input::placeholder { color: white; text-align: center; } 
 button {
 	border: 0;
+    color: #FFF;
     height: 58px;
     display: block;
     margin: 1em auto;
@@ -121,7 +129,7 @@ button {
     padding: 0.8em 2.8em;
     border-radius: 0.4em;
     letter-spacing: 0.2em;
-    background-color: white;
+    background-color: rgba(82, 179, 217, 0.6);
     font-family: 'Abril Fatface', cursive;
 }
 button:hover { opacity: 0.8; cursor: pointer; }
@@ -143,9 +151,44 @@ button:hover { opacity: 0.8; cursor: pointer; }
 	background-repear: no-repeat;
 }
 
+.weather {
+    margin-bottom: 2em;
+}
+#weather-img {
+    width: 200px;
+	height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    transition: all 3s;
+    background-size: contain;
+}
+.sun-img {
+	background-image: url(./images/weather-clear-1.jpg);
+
+}
+.backdrop{
+    top: 0;
+    right: 0;
+    width: 47%;
+    z-index: -2;
+    height: 100vh;
+    position: fixed;
+	background-color: aliceBlue;
+}
+.backdrop-2{
+    top: 0;
+    right: 0;
+    width: 4%;
+    opacity: .1;
+    z-index: -1;
+    height: 100vh;
+    position: fixed;
+	background-color: #52B3D9;
+}
 
 
-	</style>
+
+</style>
 
 
 </head>
@@ -158,29 +201,31 @@ button:hover { opacity: 0.8; cursor: pointer; }
 </div>
 <div class="main-view">
 	<div class="header-view">
-		<div class="title">What to Wear</div>
+		<div class="title">Worn Weather</div>
 		<a href="/"><div class="diji"><span>a Diji workshop thingi</div></a>
 	</div>
 
 	<div class='intro'>
 		<p>
-		A practical guide to what to wear according to weather.
+		A practical guide on what to wear according to weather.
 		<br/>Pop in your zip and press "gimmeh weather" and you shall receive. 
 		</p>
 	</div>
 
 	<div class='place-view'>
 		<div class='weather'>
-			<div id='weather' class="sun">sun image</div>
+			<div id='weather'>
+				<div id='weather-img' class='sun-img'></div>
+			</div>
 		</div>
-		<div class='city'>San Diego</div>
+		<div id='city' class='city'>San Diego</div>
 	</div>
 
 	<div class="wardrobe-view">
 		<div class='columns'>
 			<div class='column col-1'>
 				<div class="header">Today's<br>Low</div>
-				<div id='temp-low' class='temp'>76</div>
+				<div id='temp-low' class='temp'>76&#176;</div>
 				<div id='attire-low'>
 					<div class="wear sandles"></div>
 					<div class="wear sunglasses"></div>
@@ -190,7 +235,7 @@ button:hover { opacity: 0.8; cursor: pointer; }
 			<div class='column'>
 				<div class='column col-1'>
 				<div class="header">Today's<br>High</div>
-				<div id='temp-hight' class='temp'>86</div>
+				<div id='temp-high' class='temp'>86&#176;</div>
 				<div id='attire-high'>
 					<div class="wear sombrero"></div>
 					<div class="wear tank top"></div>
@@ -225,22 +270,198 @@ button:hover { opacity: 0.8; cursor: pointer; }
 
 	<div class="form">
 		<div class='input-label'>Za zip zere</div>
-		<input name='zip' maxlength="5" placeholder='90210'/>
+		<input name='zip' max="5" onkeypress='return event.charCode >= 48 && event.charCode <=57' name="newSet" placeholder='90210'/>
 		<button>gimmeh<br>weather</button>
 	</div>
-
+<div class='backdrop'></div>
+<div class='backdrop-2'></div>
 </div>
 
 
 <script>
-	var intialZips = [];
-	var intlZips = []; // international zips
+  
 
-	var coldWear = ['parka','puffy','eskimo','sweater','mittens','cape','mufflers','scarf','boots','beanie','gloves','vest','thermals','goggles'];
-	var regWear = ['shirt','suit','dress','tshirt','bandana','bowtie','necklace','lipstick','jeans','polo','heels','boots','purse'];
-	var hotWear = ['snorkel','bikini','speedo','sunglasses','tank','visor','sandles','shorts','middrift','hula'];
-	var rainWear = ['snorkel','umbrella','raincoat','rainboot','sponge','bikini','shorts','sandles','cowboyHat'];
-	var weather = ['sun','cloud','rain','thunder','snow'];
+
+
+
+
+
+ 
+var zip = 0;
+var ctry = "US";
+var intlCity = [];
+var initialUSZip = 0;
+var weatherData;
+var weatherIntlData;
+
+const coldrWear = ['beanie.png','mitt.svg','scarf.jpg','santaHat.png','skates.png'];
+const warmWear = ['bag.png','sunHat.png','sunglasses.png','shirt.png','shorts.png'	];
+const coolWear = ['bag.png','shirt.png'];
+const wetWear = ['umbrella'];
+
+
+// dummy data - erase later
+intlCity = ['Kuala Lumpur','Malaysia'];
+weatherIntlData = 
+{
+  "coord": {
+    "lon": 25.26,
+    "lat": 59.1
+  },
+  "weather": [
+    {
+      "id": 801,
+      "main": "Clouds",
+      "description": "few clouds",
+      "icon": "02n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 53.6,
+    "pressure": 999,
+    "humidity": 93,
+    "temp_min": 53.6,
+    "temp_max": 53.6
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 10.29,
+    "deg": 240
+  },
+  "clouds": {
+    "all": 20
+  },
+  "dt": 1505499600,
+  "sys": {
+    "type": 1,
+    "id": 5014,
+    "message": 0.0084,
+    "country": "EE",
+    "sunrise": 1505447374,
+    "sunset": 1505493406
+  },
+  "id": 7522323,
+  "name": "Kõue vald",
+  "cod": 200
+};
+
+weatherData = 
+{
+  "coord": {
+    "lon": 25.26,
+    "lat": 59.1
+  },
+  "weather": [
+    {
+      "id": 801,
+      "main": "Clouds",
+      "description": "few clouds",
+      "icon": "02n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 53.6,
+    "pressure": 999,
+    "humidity": 93,
+    "temp_min": 53.6,
+    "temp_max": 53.6
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 10.29,
+    "deg": 240
+  },
+  "clouds": {
+    "all": 20
+  },
+  "dt": 1505499600,
+  "sys": {
+    "type": 1,
+    "id": 5014,
+    "message": 0.0084,
+    "country": "EE",
+    "sunrise": 1505447374,
+    "sunset": 1505493406
+  },
+  "id": 7522323,
+  "name": "Kõue vald",
+  "cod": 200
+};
+
+
+
+
+const intlCities = [["Stockholm","Sweden"],['Kuala Lumpur','Malyasia'],['Nice','France'],['Kobe','Japan'],['Phuket','Thailand'],['Cancun','Mexico'],['Hanoi','Vietnam']];
+const USCities = [98599, 99599, 33040, 83002, 79010, 31414, 91911, 96811];
+// Olympia WA, Anchorage AK, Key West FL, Jackson WY, Baton Rouge LA, Savannah GA, San Diego CA, Honolulu HA
+
+function getRandomZip(array){ // returns a random US zip
+	city = array[Math.floor(Math.random() * array.length)];
+	console.log(city);
+	return city;
+}
+
+zip = getRandomZip(USCities); // set a random zip
+
+intlCity = getRandomZip(intlCities);
+
+
+
+
+
+
+function getWeather(zip, country = "US"){ //
+	var search = "zip"
+	if(country != "US"){
+		search = "q";
+	}
+
+	var url = `http://api.openweathermap.org/data/2.5/weather?units=imperial&${search}=${zip}&country=${country}.json&APPID=ec9d435c91a19b4eaaa33303758d378c`;
+	
+	fetch(url)
+	.then((resp) => resp.json()) 
+	.then(function(response) {
+		console.log(response);
+		if(country == "US"){
+			weatherData = response;
+		} else {
+			weatherIntlData = response;
+		}
+
+	}).catch(function(err) {
+			// Error
+	});
+}
+
+// getWeather(zip);
+// getWeather(intlCity[0],intlCity[1]);
+
+function getWear(type){
+	var peice = type[Math.floor(Math.random() * type.length)];
+	return peice;
+}
+
+function injectIntlContent(){
+  document.getElementById('mw-city').innerHTML = intlCity[0];
+  document.getElementById('mw-ctry').innerHTML = intlCity[1];
+  document.getElementById('mw-low').innerHTML = weatherIntlData.main.temp_min;
+  document.getElementById('mw-high').innerHTML = weatherIntlData.main.temp_max;
+}
+
+injectIntlContent();
+
+
+function injectCityContent(){
+  document.getElementById('city').innerHTML = weatherData.name;
+  document.getElementById('temp-low').innerHTML = weatherData.main.temp_min;
+  document.getElementById('temp-high').innerHTML = weatherData.main.temp_max;
+}
+
+injectCityContent();
+
+
 
 
 

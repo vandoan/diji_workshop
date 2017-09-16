@@ -1,0 +1,285 @@
+<!HTML>
+<head>
+<title>Diji Workshop</title>
+	<link rel="icon" type="image/png"  href="/images/scissor.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Annie+Use+Your+Telescope|Shadows+Into+Light" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+
+<style>
+.main-view {
+	width: 700px;
+	margin: 40px auto 10em auto;
+	font-family: 'Playfair Display', serif;
+}
+.title {
+	opacity: .8;
+	font-size: 5.6em;
+    letter-spacing: -1px;
+    margin-bottom: 0.7em;
+}
+a { text-decoration: none; color: #000; transition: all .3s; }
+a:hover { opacity: .7; }
+.diji {
+    font-size: 12px;
+    margin-left: 21em;
+    margin-top: -8px;
+    letter-spacing: 3.3px;
+}
+.bubble {
+    margin-left: -10px;
+    overflow: hidden;
+    transition: all .7s;
+    padding-bottom: 5em;
+}
+.row {
+	opacity: 0;
+	transition: all 1s;
+}
+.row.show { opacity: 1; }
+.row div {
+    height: 21px;
+    min-width: 15px;
+    font-weight: 900;
+    font-size: 1.1em;
+    margin: 10px 10px;
+    text-align: center;
+    letter-spacing: 0px;
+    display: inline-block;
+    color: rgba(0,0,0,0.8);
+    background-color: rgba(249, 191, 59, 1);
+    padding: 0.1em 0.6em 0.6em 0.5em;
+}
+.row .switched {
+	color: #FFFFFF;
+    background-color: rgba(52, 73, 94, 0.9);
+}
+#submit, #bub-button {
+	right:0;
+	top:8em;
+	opacity: .7;
+	position: fixed;
+    font-size: 0.9em;
+	font-weight: 900;
+	transition: all .4s;
+	display: inline-block;
+    border-radius: 3px 0 0 3px;
+    border: solid 3px rgba(0,0,0,0.8);
+	border-right: none;
+}
+#bub-button div {
+	cursor: pointer;
+    font-size: 1.1em;
+    padding: 7px 22px;
+    letter-spacing: 2px;
+    background-color: rgba(245, 171, 53,0.9);
+}
+#bub-button:hover { opacity: 1; }
+
+#input-bubble {
+    right: 0;
+    top: 14em;
+	position: fixed;
+}
+textarea {
+	border: 0;
+    padding: 1em;
+	height: 100%;
+    width: 100px;
+    height: 100px;
+    font-size: 1em;
+    font-weight: 900;
+    border: solid 3px rgba(0,0,0,0.7);
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+    vertical-align: middle;
+    font-family: 'Playfair Display', serif;
+}
+#submit {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 11px;
+    position: initial;
+    text-align: center;
+    letter-spacing: 3px;
+    background-color: rgba(245, 171, 53,0.9);
+}
+#submit:hover { opacity: 1; cursor: pointer; }
+.input-msg {
+    width: 80px;
+	opacity: 0.6;
+    float: right;
+    margin: 10px;
+    font-size: 0.6em;
+    text-align: right;
+    line-height: 1.7em;
+    letter-spacing: 1px;
+}
+.intro {
+    opacity: 0.9;
+    width: 500px;
+    font-size: 0.9em;
+    line-height: 1.6em;
+    margin: 0 auto 4em 0;
+    letter-spacing: 1.3px;
+}
+#fm-box {
+	opacity: 0;
+    margin-bottom: 10em;
+    margin-left: 0.6em;
+	transition: all .7s;
+}
+.final-msg {
+    margin: auto;
+    font-size: 1.6em;
+    font-weight: 700;
+    border-radius: 3px;
+    letter-spacing: 4px;
+    padding: 0.6em 3.3em;
+    display: inline-block;
+    border: 3px solid rgba(0,0,0,0.7);
+    background-color: rgba(249, 191, 59, 1);
+}
+#fm-box.show { opacity: 1; }
+pre {
+	    font-size: .8em;
+}
+</style>
+
+</head>
+
+<body>
+<div class='main-view'>
+	<div class='title'>
+		<div>Bubble Sort</div>
+		<div class='diji'><a href='/'>a Diji workshop thingy</a></div>
+	</div>
+
+	<div class='intro'>
+	<p>
+	One of the classics. Not as efficient as some others, but gets the job done.
+	</p>
+	<p>Basically, with each loop, you compare the first to the second. If a is larger than b, then flip. Move on to the 2nd digit. Could be a or could be b. Now is it greater than c? Until the end. 
+	</p>
+	<p>
+	If you fliped any, then you need to loop through it again. Once you loop without any flips, then you're done! Easy peasy, no?
+	</p>
+	<p>
+	Play with this do-hicky, and perhaps build one yourself.
+	</p>
+	</div>
+	<div id='bub-button'>
+		<div onclick="sortByBubbleOnce(bubbles)">Next loop</div>
+	</div>
+
+	<div id="bubble" class="bubble">
+	</div>
+	<div id='input-bubble'>
+		<textarea min="5" onkeypress='return event.charCode >= 48 && event.charCode <=57 || event.charCode == 32'name="newSet" type="number" placeholder='3 9 5 3 2 11 42 5 9 22'></textarea>
+		<div onclick="updateArray()" id="submit">New Set</div>
+		<div class='input-msg'>*suggested<br>12 or fewer numbers</div>
+	</div>
+	<div id='fm-box'>
+		<div class='final-msg'>Bubblin' complete!!!</div>
+	</div>
+
+	<div class='details'>
+	<p>Essentially, this is what it boils down to.<br>If you copy and paste this into your console, it should run. 
+	</div>
+
+	<pre>
+function sortByBubble(array){
+	var sorting = true;
+	var tempHolder = "";
+
+	do{
+	  sorting = false;				// For each new while loop, a clean start 
+	  for(let i = 0; i < array.length - 1; i++){	// Loop through each digit but the last
+		if(array[i] > array[i + 1]){		//   If the 1st digit is greater than the 2nd
+		  tempHolder = array[i]; 		//     Record the 1st digit
+		  array[i] = array[i + 1];		//     Replace the 1st with the 2nd digit
+		  array[i + 1] = tempHolder;		//     Replace the 2nd with the 1st
+		  sorting = true;			//     Indicate that a switch occured
+		}					//     And another while loop will run
+	}						
+							
+	console.log(array);
+	} while(sorting);	// if sorting = false, a clean pass, done
+}
+
+sortByBubble(testArray);
+
+	</pre>
+
+</div>
+
+
+<script>
+var bubbleCount = 1;
+var bubbling = true;
+var bubble = document.getElementById('bubble');
+var bubbles = [3,9,5,3,2,11,42,5,9,22];
+
+function updateArray(){
+	bubbleCount = 1;
+	bubbling = true;
+	bubbles = document.getElementsByName('newSet')[0].value.split(" ");
+	bubble.innerHTML = "";
+	bubbles = bubbles.filter(Boolean);
+ 	document.getElementById('fm-box').className = "";
+
+	injectBubbles();
+}
+
+function injectBubbles(){
+	bubble.innerHTML += `<div id="b-row-${bubbleCount}" class="row">`;
+	bubbles.forEach( (elem) => {document.getElementById(`b-row-${bubbleCount}`).innerHTML += `<div>${elem}</div>`; });
+	setTimeout( () => {
+		console.log(bubbleCount);
+		document.getElementById(`b-row-${bubbleCount - 1}`).className += " show";
+	}, 600, bubbleCount);
+
+	bubbleCount++;
+}
+
+function sortByBubbleOnce(array){
+	if(bubbling == false){
+		document.getElementById('fm-box').className = 'show';
+		return console.log('Bubbling completed');
+	}
+	bubbling = false;
+
+	bubble.innerHTML += `<div id="b-row-${bubbleCount}" class="row"></div>`;
+	for(let i = 0; i < array.length - 1; i++){
+		var previousSwitch = 0;
+		if(array[i] > array[i + 1]){
+			tempHolder = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = tempHolder;
+			document.getElementById(`b-row-${bubbleCount}`).innerHTML += `<div class="switched">${array[i]}</div>`;
+			if(i == array.length - 2) {
+				document.getElementById(`b-row-${bubbleCount}`).innerHTML += `<div class="switched">${array[i + 1]}</div>`; 
+			}
+			bubbling = true;
+		} else {
+			document.getElementById(`b-row-${bubbleCount}`).innerHTML += `<div>${array[i]}</div>`; 
+			if(i == array.length - 2) {
+				document.getElementById(`b-row-${bubbleCount}`).innerHTML += `<div>${array[i + 1]}</div>`; 
+			}
+		}
+	}
+
+	setTimeout(() => {
+		document.getElementById(`b-row-${bubbleCount-1}`).className += " show";
+	}, 200, bubbleCount);
+
+	bubbleCount++;
+	console.log(array);	
+}
+
+
+injectBubbles(); // initial injection
+
+</script>
+</body>
+</html>
