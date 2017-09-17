@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Diji workshop</title>
-	<link rel="icon" type="image/png"  href="/scissor.ico" />
+	<link rel="icon" type="image/png"  href="/images/scissor.ico" />
  	<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 
@@ -144,16 +144,25 @@ button:hover { opacity: 0.8; cursor: pointer; }
 }
 .temp {
     font-size: 3.8em;
+    margin-bottom: 0.4em;
     letter-spacing: 0.03em;
 }
-.wear {
-	background-size: contain;
-	background-repear: no-repeat;
-}
 
-.weather {
+.weather-box {
     margin-bottom: 2em;
 }
+
+.clear-1 {background-image: url(./images/weather/clear-1.jpg);}
+.clear-2 {background-image: url(./images/weather/clear-2.jpg);}
+.clear-3 {background-image: url(./images/weather/clear-3.jpg);}
+.clear-4 {background-image: url(./images/weather/clear-4.jpg);}
+.clear-5 {background-image: url(./images/weather/clear-5.jpg);}
+.clear-6 {background-image: url(./images/weather/clear-6.jpg);}
+.clear-7 {background-image: url(./images/weather/clear-7.jpg);}
+.clear-8 {background-image: url(./images/weather/clear-8.jpg);}
+.clear-9 {background-image: url(./images/weather/clear-9.jpg);}
+.clear-10 {background-image: url(./images/weather/clear-10.jpg);}
+
 #weather-img {
     width: 200px;
 	height: 200px;
@@ -161,10 +170,6 @@ button:hover { opacity: 0.8; cursor: pointer; }
     border-radius: 50%;
     transition: all 3s;
     background-size: contain;
-}
-.sun-img {
-	background-image: url(./images/weather-clear-1.jpg);
-
 }
 .backdrop{
     top: 0;
@@ -178,14 +183,72 @@ button:hover { opacity: 0.8; cursor: pointer; }
 .backdrop-2{
     top: 0;
     right: 0;
-    width: 4%;
+    width: 2%;
     opacity: .1;
     z-index: -1;
     height: 100vh;
     position: fixed;
-	background-color: #52B3D9;
+	background-color: #336E7B;
 }
 
+
+#mw-wear {
+	text-aling: center;
+}
+.wear {
+	margin: 12px auto;
+	height: 80px;
+    width: 80px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+#mw-wear .wear {
+	width: 50px;
+	height: 50px;
+}
+.wear.alpineHat { background-image: url(./images/wear/alpineHat.png); }
+.wear.beanie { background-image: url(./images/wear/beanie.svg); }
+.wear.bag { background-image: url(./images/wear/bag.png); }
+.wear.boot { background-image: url(./images/wear/boot.png); }
+.wear.boot2 { background-image: url(./images/wear/boot2.png); }
+.wear.boot3 { background-image: url(./images/wear/boot3.png); }
+.wear.bikiniBottom { background-image: url(./images/wear/bikiniBottom.png); }
+.wear.bikiniTop { background-image: url(./images/wear/bikiniTop.png); }
+.wear.beret { background-image: url(./images/wear/beret.png); }
+.wear.blazer { background-image: url(./images/wear/blazer.png); }
+.wear.bag { background-image: url(./images/wear/bag.png); }
+.wear.coat { background-image: url(./images/wear/coat.png); }
+.wear.dress { background-image: url(./images/wear/dress.png); }
+.wear.hat { background-image: url(./images/wear/hat.png); }
+.wear.heel { background-image: url(./images/wear/heel.png); }
+.wear.hoody { background-image: url(./images/wear/hoody.png); }
+.wear.mitt { background-image: url(./images/wear/mitt.svg); }
+.wear.pants { background-image: url(./images/wear/pants.png); }
+.wear.poncho { background-image: url(./images/wear/poncho.png); }
+.wear.raincoat { background-image: url(./images/wear/raincoat.png); }
+.wear.robe { background-image: url(./images/wear/robe.png); }
+.wear.sandal { background-image: url(./images/wear/sandal.png); }
+.wear.sandal2 { background-image: url(./images/wear/sandal2.png); }
+.wear.santaHat { background-image: url(./images/wear/santaHat.png); }
+.wear.scarf { background-image: url(./images/wear/scarf.png); }
+.wear.shoe { background-image: url(./images/wear/shoe.png); }
+.wear.shorts { background-image: url(./images/wear/shorts.png); }
+.wear.skate { background-image: url(./images/wear/skate.svg); }
+.wear.sweater { background-image: url(./images/wear/sweater.png); }
+.wear.sunglasses { background-image: url(./images/wear/sunglasses.png); }
+.wear.sunHat { background-image: url(./images/wear/sunHat.png); }
+.wear.sunHat2 { background-image: url(./images/wear/sunHat2.png); }
+.wear.tank { background-image: url(./images/wear/tank.png); }
+
+
+.footer {
+    opacity: 0.5;
+    font-size: 0.6em;
+    text-align: right;
+    margin-right: 3em;
+    letter-spacing: 0.8px;
+    font-family: 'Lato', sans-serif;
+}
 
 
 </style>
@@ -207,40 +270,39 @@ button:hover { opacity: 0.8; cursor: pointer; }
 
 	<div class='intro'>
 		<p>
-		A practical guide on what to wear according to weather.
+		A practical guide on what to wear according to the weather.
 		<br/>Pop in your zip and press "gimmeh weather" and you shall receive. 
 		</p>
 	</div>
 
 	<div class='place-view'>
-		<div class='weather'>
+		<div class='weather-box'>
 			<div id='weather'>
-				<div id='weather-img' class='sun-img'></div>
+				<div id='weather-img' class='weather clear'></div>
 			</div>
 		</div>
-		<div id='city' class='city'>San Diego</div>
+		<div id='city' class='city'></div>
 	</div>
 
 	<div class="wardrobe-view">
 		<div class='columns'>
 			<div class='column col-1'>
 				<div class="header">Today's<br>Low</div>
-				<div id='temp-low' class='temp'>76&#176;</div>
-				<div id='attire-low'>
-					<div class="wear sandles"></div>
-					<div class="wear sunglasses"></div>
-					<div class="wear shorts"></div>
+				<div id='temp-low' class='temp'></div>
+				<div id='wear-low'>
+					<div id="wl-top" class="wear"></div>
+					<div id="wl-mid" class="wear"></div>
+					<div id="wl-bot" class="wear"></div>
 				</div>
 			</div>
 			<div class='column'>
 				<div class='column col-1'>
 				<div class="header">Today's<br>High</div>
-				<div id='temp-high' class='temp'>86&#176;</div>
-				<div id='attire-high'>
-					<div class="wear sombrero"></div>
-					<div class="wear tank top"></div>
-					<div class="wear bikini"></div>
-					<div class="wear speedo"></div>
+				<div id='temp-high' class='temp'></div>
+				<div id='wear-high'>
+					<div id="wh-top" class="wear"></div>
+					<div id="wh-mid" class="wear"></div>
+					<div id="wh-bot" class="wear"></div>
 				</div>
 			</div>
 			</div>
@@ -253,16 +315,17 @@ button:hover { opacity: 0.8; cursor: pointer; }
 			<div id='mw-weather' class="sun"></div>
 		</div>
 		<div class='mw-place'>
-			<div id='mw-city'>Stockholm,</div>
-			<div id="mw-ctry">Sweden</div>
+			<div id='mw-city'></div>
+			<div id="mw-ctry"></div>
 			<div id='mw-temp'>
-				<div id='mw-low' class='mw-temp'>low: 24</div><div id='mw-high' class='mw-temp'>high: 53</div>
+				<div id='mw-temp' class='mw-temp'>low: 24</div>
 			</div>
 		</div>
 		<div class='mw-wear'>
-			<div id='mw-wear'>
-				<div class='parka'>parka img</div>
-				<div class='earmuffs'>earmuffs img</div>
+			<div id="mw-wear">
+				<div id="mw-top" class='wear'></div>
+				<div id="mw-mid" class='wear'></div>
+				<div id="mw-bot" class='wear'></div>
 			</div>
 		</div>
 
@@ -271,11 +334,12 @@ button:hover { opacity: 0.8; cursor: pointer; }
 	<div class="form">
 		<div class='input-label'>Za zip zere</div>
 		<input name='zip' max="5" onkeypress='return event.charCode >= 48 && event.charCode <=57' name="newSet" placeholder='90210'/>
-		<button>gimmeh<br>weather</button>
+		<button id='gim-but' onclick="updateZip()">gimmeh<br>weather</button>
 	</div>
-<div class='backdrop'></div>
-<div class='backdrop-2'></div>
+	<div class='backdrop'></div>
+	<div class='backdrop-2'></div>
 </div>
+<div class='footer'>*Always use sunscreen when under direct sun exposure and carry a spare layer when it's cold.</div>
 
 
 <script>
@@ -294,106 +358,21 @@ var initialUSZip = 0;
 var weatherData;
 var weatherIntlData;
 
-const coldrWear = ['beanie.png','mitt.svg','scarf.jpg','santaHat.png','skates.png'];
-const warmWear = ['bag.png','sunHat.png','sunglasses.png','shirt.png','shorts.png'	];
-const coolWear = ['bag.png','shirt.png'];
-const wetWear = ['umbrella'];
+const wearcoldtop = ['beanie','santaHat','alpineHat','beret'];
+const wearcoldmid = ['scarf','mitt','sweater','coat','poncho','hoody'];
+const wearcoldbottom = ['skate','boot','boot2','boot3','pants'];
 
+const wearcooltop = ['sunHat2','beret','alpineHat','sunglasses'];
+const wearcoolmid = ['bag','poncho','robe','tank','dress','blazer','coat'];
+const wearcoolbottom = ['shorts','pants','boot','heel','boot2','boot3','sandal','sandal2','shoe'];
 
-// dummy data - erase later
-intlCity = ['Kuala Lumpur','Malaysia'];
-weatherIntlData = 
-{
-  "coord": {
-    "lon": 25.26,
-    "lat": 59.1
-  },
-  "weather": [
-    {
-      "id": 801,
-      "main": "Clouds",
-      "description": "few clouds",
-      "icon": "02n"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 53.6,
-    "pressure": 999,
-    "humidity": 93,
-    "temp_min": 53.6,
-    "temp_max": 53.6
-  },
-  "visibility": 10000,
-  "wind": {
-    "speed": 10.29,
-    "deg": 240
-  },
-  "clouds": {
-    "all": 20
-  },
-  "dt": 1505499600,
-  "sys": {
-    "type": 1,
-    "id": 5014,
-    "message": 0.0084,
-    "country": "EE",
-    "sunrise": 1505447374,
-    "sunset": 1505493406
-  },
-  "id": 7522323,
-  "name": "Kõue vald",
-  "cod": 200
-};
+const wearhottop = ['alpineHat','hat','sunHat','sunHat2','shorts','beret'];
+const wearhotmid = ['bag','dress','tank','dress','bikiniTop'];
+const wearhotbottom = ['shorts','bikiniBottom','sandal','sandal2'];
 
-weatherData = 
-{
-  "coord": {
-    "lon": 25.26,
-    "lat": 59.1
-  },
-  "weather": [
-    {
-      "id": 801,
-      "main": "Clouds",
-      "description": "few clouds",
-      "icon": "02n"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 53.6,
-    "pressure": 999,
-    "humidity": 93,
-    "temp_min": 53.6,
-    "temp_max": 53.6
-  },
-  "visibility": 10000,
-  "wind": {
-    "speed": 10.29,
-    "deg": 240
-  },
-  "clouds": {
-    "all": 20
-  },
-  "dt": 1505499600,
-  "sys": {
-    "type": 1,
-    "id": 5014,
-    "message": 0.0084,
-    "country": "EE",
-    "sunrise": 1505447374,
-    "sunset": 1505493406
-  },
-  "id": 7522323,
-  "name": "Kõue vald",
-  "cod": 200
-};
+const wetWear = ['raincoat','coat'];
 
-
-
-
-const intlCities = [["Stockholm","Sweden"],['Kuala Lumpur','Malyasia'],['Nice','France'],['Kobe','Japan'],['Phuket','Thailand'],['Cancun','Mexico'],['Hanoi','Vietnam']];
+const intlCities = [["Stockholm","Sweden"],['Kuala Lumpur','Malyasia'],['Nice','France'],['Kobe','Japan'],['Phuket','Thailand'],['Cancun','Mexico'],['Hanoi','Vietnam'],['Reykjavík','Iceland']];
 const USCities = [98599, 99599, 33040, 83002, 79010, 31414, 91911, 96811];
 // Olympia WA, Anchorage AK, Key West FL, Jackson WY, Baton Rouge LA, Savannah GA, San Diego CA, Honolulu HA
 
@@ -405,12 +384,18 @@ function getRandomZip(array){ // returns a random US zip
 
 zip = getRandomZip(USCities); // set a random zip
 
-intlCity = getRandomZip(intlCities);
+intlCity = getRandomZip(intlCities); // returns an array of city, ctry
 
 
 
 
-
+function updateZip(){
+	zip = document.getElementsByName('zip')[0].value;
+	getWeather(zip);
+	injectCityContent();
+	document.getElementById('gim-but').setAttribute('style','display:none');
+	return;
+}
 
 function getWeather(zip, country = "US"){ //
 	var search = "zip"
@@ -426,8 +411,10 @@ function getWeather(zip, country = "US"){ //
 		console.log(response);
 		if(country == "US"){
 			weatherData = response;
+			injectCityContent();
 		} else {
 			weatherIntlData = response;
+			injectIntlContent();
 		}
 
 	}).catch(function(err) {
@@ -435,33 +422,64 @@ function getWeather(zip, country = "US"){ //
 	});
 }
 
-// getWeather(zip);
-// getWeather(intlCity[0],intlCity[1]);
+getWeather(zip);
+getWeather(intlCity[0],intlCity[1]);
 
-function getWear(type){
-	var peice = type[Math.floor(Math.random() * type.length)];
-	return peice;
+
+function getWear(currentTemp){
+	var wear;
+	var article;
+	if(currentTemp < 50){wear = "cold"}
+	else if(currentTemp < 80){wear = "cool"}
+	else {wear = "hot"}
+	wearType = "wear"+wear;
+	wearTop = eval(wearType+'top'); // convert string into var
+	wearMid = eval(wearType+'mid'); // convert string into var
+	wearBot = eval(wearType+'bottom'); // convert string into var
+	
+	wearTop = wearTop[Math.floor(Math.random() * wearTop.length)];
+	wearMid = wearMid[Math.floor(Math.random() * wearMid.length)];
+	wearBot = wearBot[Math.floor(Math.random() * wearBot.length)];
+
+	return [wearTop, wearMid, wearBot];
 }
 
 function injectIntlContent(){
   document.getElementById('mw-city').innerHTML = intlCity[0];
   document.getElementById('mw-ctry').innerHTML = intlCity[1];
-  document.getElementById('mw-low').innerHTML = weatherIntlData.main.temp_min;
-  document.getElementById('mw-high').innerHTML = weatherIntlData.main.temp_max;
+  document.getElementById('mw-temp').innerHTML = weatherIntlData.main.temp + "&#176;";
+
+  var wear = getWear(weatherIntlData.main.temp);
+
+  document.getElementById('mw-top').className += ` ${wear[0]}`;
+  document.getElementById('mw-mid').className += ` ${wear[1]}`;
+  document.getElementById('mw-bot').className += ` ${wear[2]}`;
+
 }
 
-injectIntlContent();
-
+var randomClearImage = Math.ceil(Math.random()*10); // ten images in the dir
 
 function injectCityContent(){
+  var tempLow = weatherData.main.temp_min;
+  var tempMax = weatherData.main.temp_max;
+
+  document.getElementById('weather-img').className = `weather clear-${randomClearImage}`;
   document.getElementById('city').innerHTML = weatherData.name;
-  document.getElementById('temp-low').innerHTML = weatherData.main.temp_min;
-  document.getElementById('temp-high').innerHTML = weatherData.main.temp_max;
+  document.getElementById('temp-low').innerHTML = tempLow + "&#176;";
+  document.getElementById('temp-high').innerHTML = tempMax + "&#176;";
+
+  var wearLow = getWear(tempLow);
+  var wearHigh = getWear(tempMax);
+
+  document.getElementById('wl-top').className += ` ${wearLow[0]}	`;
+  document.getElementById('wl-mid').className += ` ${wearLow[1]}`;
+  document.getElementById('wl-bot').className += ` ${wearLow[2]}`;
+
+  document.getElementById('wh-top').className += ` ${wearHigh[0]}`;
+  document.getElementById('wh-mid').className += ` ${wearHigh[1]}`;
+  document.getElementById('wh-bot').className += ` ${wearHigh[2]}`;
+
 }
-
-injectCityContent();
-
-
 
 
 

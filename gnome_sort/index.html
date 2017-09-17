@@ -1,0 +1,392 @@
+<!HTML>
+<head>
+<title>Diji Workshop</title>
+	<link rel="icon" type="image/png"  href="/images/scissor.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Annie+Use+Your+Telescope|Shadows+Into+Light" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+
+<style>
+.main-view {
+	width: 700px;
+	margin: 40px auto 10em auto;
+	font-family: 'Playfair Display', serif;
+}
+.title {
+	opacity: .8;
+	font-size: 5.6em;
+    letter-spacing: -1px;
+    margin-bottom: 0.7em;
+}
+a { text-decoration: none; color: #000; transition: all .3s; }
+a:hover { opacity: .7; }
+.diji {
+    font-size: 12px;
+    margin-left: 21em;
+    margin-top: -8px;
+    letter-spacing: 3.3px;
+}
+.bubble {
+    margin-left: -10px;
+    overflow: hidden;
+    transition: all .7s;
+    padding-bottom: 5em;
+}
+.row {
+	opacity: 0;
+	transition: all 1s;
+}
+.row.show { opacity: 1; }
+.row div {
+    height: 21px;
+    min-width: 15px;
+    font-weight: 900;
+    font-size: 1.1em;
+    margin: 10px 10px;
+    text-align: center;
+    letter-spacing: 0px;
+    display: inline-block;
+    color: rgba(0,0,0,0.8);
+    background-color: rgba(249, 191, 59, 1);
+    padding: 0.4em 0.6em 0.4em 0.5em;
+}
+.row.pass div {
+	color: green;
+}
+.row .switched {
+	color: #FFFFFF;
+    background-color: rgba(52, 73, 94, 0.9);
+}
+.row .examined {
+	color: #FFFFFF;
+    background-color: coral;
+}
+#submit, #bub-button {
+	right:0;
+	top:8em;
+	opacity: .7;
+	position: fixed;
+    font-size: 0.9em;
+	font-weight: 900;
+	transition: all .4s;
+	display: inline-block;
+    border-radius: 3px 0 0 3px;
+    border: solid 3px rgba(0,0,0,0.8);
+	border-right: none;
+}
+#bub-button div {
+	cursor: pointer;
+    font-size: 1.1em;
+    padding: 7px 22px;
+    letter-spacing: 2px;
+    background-color: rgba(245, 171, 53,0.9);
+}
+#bub-button:hover { opacity: 1; }
+
+#input-bubble {
+    right: 0;
+    top: 14em;
+	position: fixed;
+}
+textarea {
+	border: 0;
+    padding: 1em;
+	height: 100%;
+    width: 100px;
+    height: 100px;
+    font-size: 1em;
+    font-weight: 900;
+    border: solid 3px rgba(0,0,0,0.7);
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+    vertical-align: middle;
+    font-family: 'Playfair Display', serif;
+}
+#submit {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 11px;
+    position: initial;
+    text-align: center;
+    letter-spacing: 3px;
+    background-color: rgba(245, 171, 53,0.9);
+}
+#submit:hover { opacity: 1; cursor: pointer; }
+.input-msg {
+    width: 80px;
+	opacity: 0.6;
+    float: right;
+    margin: 10px;
+    font-size: 0.6em;
+    text-align: right;
+    line-height: 1.7em;
+    letter-spacing: 1px;
+}
+.intro {
+    opacity: 0.9;
+    width: 500px;
+    font-size: 0.9em;
+    line-height: 1.6em;
+    margin: 0 auto 8em 0;
+    letter-spacing: 1.3px;
+}
+#fm-box {
+	opacity: 0;
+    margin-bottom: 10em;
+    margin-left: 0.6em;
+	transition: all .7s;
+}
+.final-msg {
+    margin: auto;
+    font-size: 1.6em;
+    font-weight: 700;
+    border-radius: 3px;
+    letter-spacing: 4px;
+    padding: 0.6em 3.3em;
+    display: inline-block;
+    border: 3px solid rgba(0,0,0,0.7);
+    background-color: rgba(249, 191, 59, 1);
+}
+#fm-box.show { opacity: 1; }
+h2 {
+	letter-spacing: 3px;
+    display: inline-block;
+    border-bottom: solid 4px;
+}
+pre {
+    font-size: .8em;
+    margin-top: 5em;
+}
+.blueBox, .coralBox {
+    width: 26px;
+    height: 26px;
+    margin: 17px 10px 0 40px;
+    display: inline-block;
+}
+.blueBox {
+	background-color: rgba(52, 73, 94, 0.9);
+}
+.coralBox {
+	background-color: coral;
+}
+.bbtext, .crltext {
+    opacity: 0.2;
+    font-size: 0.8em;
+    margin-top: 10px;
+    padding-top: 11px;
+    vertical-align: top;
+    letter-spacing: 1.7px;
+    display: inline-block;
+}
+#b-title h2 {
+    margin-top: 0;
+    font-size: 2.5em;
+    margin-right: 1.2em;
+    vertical-align: top;
+}
+</style>
+
+</head>
+
+<body>
+<div class='main-view'>
+	<div class='title'>
+		<div>Gnome Sort</div>
+		<div class='diji'><a href='/'>Diji workshop</a></div>
+	</div>
+
+	<div class='intro'>
+	<p>
+	If you're looking for inefficiency, then look no more. Here's a brief explaination of how a gnome sort works.<br>
+	<br>Our array: 1,2,3,5,6,4,7.
+	</p>
+	<p>
+		If x is less than y
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;- Move on to the next loop.
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1 and 2 pass, and so do 2 and 3, 3 and 5, 5 and 6)
+				<br>&nbsp;&nbsp;&nbsp;&nbsp;- If you took one or a few steps back, then continue where you started to step back, a little tricky.
+
+		<br><br>Else, x is greater than y (speed bump, 6 and 4)
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;- Swap x and y, (1,2,3,5,4,6,7).
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;- Take one step back, confusing part.
+
+			<br><br>&nbsp;&nbsp;&nbsp;&nbsp;So 6 > 4 and you switch the two, (1,2,3,5,4,6,7).
+				<br>&nbsp;&nbsp;&nbsp;&nbsp;Crud, next loop, 5 > 4, switch them too, (1,2,3,4,5,6,7).
+				<br>&nbsp;&nbsp;&nbsp;&nbsp;Next loop, 4 finally checks out, (1,2,3,4,5,6,7).
+				<br>&nbsp;&nbsp;&nbsp;&nbsp;Next loop, jump back to 5 and 6 and continue on.
+				<br><br>
+				So imagine if you had to sort 10, 20, a hundred number in this manner. Madness.
+	</p>
+
+	<p>
+	Try this out for yourself with the next button on the right. I set up the next loop to run 3 loops at a time. Otherwise, you'll be sitting there, clicking away all day. Try out your own set of numbers if your curious.
+	</p>
+	
+	</div>
+	<div id='bub-button'>
+		<div onclick="runGnomeLoop(gnomes)">Next loops</div>
+	</div>
+	<div id='b-title'>
+		<h2>Friggin' Gnomes</h2>
+		<div class='blueBox'></div><div class='bbtext'>a switch</div> <div class='coralBox'></div><div class='crltext'>a comparison</div>
+	</div>
+	<div id="bubble" class="bubble">
+	</div>
+	<div id='input-bubble'>
+		<textarea min="5" onkeypress='return event.charCode >= 48 && event.charCode <=57 || event.charCode == 32'name="newSet" type="number" placeholder='3 9 5 3 2 11 42 5 9 22'></textarea>
+		<div onclick="updateArray()" id="submit">New Set</div>
+		<div class='input-msg'>*suggest<br>7 or fewer numbers</div>
+	</div>
+	<div id='fm-box'>
+		<div class='final-msg'>Friggin' gnomes!!!</div>
+	</div>
+
+	<div class='details'>
+	<h2>The Magic</h2>
+	<p>Essentially, this is what it boils down to.<br>If you copy and paste this into your console, it should run. 
+	</div>
+
+	<pre>
+const dumiArray = [5,4,9,1,18,44,9,5];
+
+function sortByGnome(array){
+	var i = 1;
+	var swapInt;
+	var loop = 0;
+	var highestIndex = 1;
+
+	while(i < array.length){		// While you haven't reached the last index
+		loop++;
+
+		if(i == 0) { i = highestIndex; } 
+		// If i is 0, jump back up to the last highest place
+		if(array[i - 1] > array[i]){ 	// If b is less than a, swap them
+			swapInt = array[i]; 		// Hold on to b
+			array.splice(i,1);		// Delete a
+			array.splice(i-1,0,swapInt);	// Add b one position back
+			i--;				// move the loop back one to check the previous
+		} else {			// If a is less b
+			i++;				// Move to the next loop
+			highestIndex++;			// Record your highest loop
+		}   
+	}	//console.log(array);
+
+	console.log(`final loop: ${loop} and ${array}`);
+	return array;
+}
+
+sortByGnome(dumiArray);
+
+	</pre>
+
+</div>
+
+
+<script>
+var i = 1;
+var swapInt;
+var highestIndex = 1;
+var sorting = true;
+var gnomesCount = 1;
+var gnomes = [5,4,9,1,18,44,9,5];
+var bubble = document.getElementById('bubble');
+
+injectGnomes();
+
+
+function runGnomeLoop(){
+	if(sorting == false){ console.log('No mas.'); return; }
+
+	var loop = 0;
+
+	while(loop < 3){		// While you haven't reached the last index
+		loop++;
+		console.log(i);
+		bubble.innerHTML += `<div id="b-row-${gnomesCount}" class="row"></div>`;
+
+		if(i == 0) { i = highestIndex; } 
+		// If i is 0, jump back up to the last highest place
+		if(gnomes[i - 1] > gnomes[i]){ 	// If b is less than a, swap them
+			swapInt = gnomes[i]; 			// Hold on to b
+			gnomes.splice(i,1);				// Delete a
+			gnomes.splice(i-1,0,swapInt);	// Add b one position back
+			
+			// console.log(gnomes);
+			gnomes.map( (e, index) => {
+				if( index == i || index == i - 1) {
+					document.getElementById(`b-row-${gnomesCount}`).innerHTML += `<div class="switched">${e}</div>`; 
+				} else {
+					document.getElementById(`b-row-${gnomesCount}`).innerHTML += `<div>${e}</div>`; 
+				}
+			});
+			setTimeout( (gnomesCount) => {
+				document.getElementById(`b-row-${gnomesCount}`).className += " show";
+			}, 600, gnomesCount);
+
+
+			i--;						// move the loop back one to check the previous	
+			gnomesCount++;
+			sorting = true;
+		} else {						// If a is less b
+			// create the new row
+			bubble.innerHTML += `<div id="b-row-${gnomesCount}" class="row"></div>`;
+
+			gnomes.map( (e, index) => { // insert divs into the new row
+				if( index == i || index == i + 1) {
+					document.getElementById(`b-row-${gnomesCount}`).innerHTML += `<div class="examined">${e}</div>`; 
+				} else {
+					document.getElementById(`b-row-${gnomesCount}`).innerHTML += `<div>${e}</div>`; 
+				}
+			});
+
+			setTimeout( (gnomesCount) => {
+				document.getElementById(`b-row-${gnomesCount}`).className += " show";
+			}, 600, gnomesCount);
+
+			if(i != highestIndex){
+				i = highestIndex;
+			} else {
+				i++;							// Move to the next loop
+				highestIndex++;					// Record your highest loop
+			}
+			gnomesCount++;
+
+		}
+		if(i == gnomes.length) {
+			sorting = false;
+		 	document.getElementById('fm-box').className = "show";
+		}
+		console.log(gnomes)
+	} 
+
+}
+
+
+
+
+function injectGnomes(){	// initial injection
+	bubble.innerHTML += `<div id="b-row-${gnomesCount}" class="row">`;
+	gnomes.forEach( (elem) => {document.getElementById(`b-row-${gnomesCount}`).innerHTML += `<div>${elem}</div>`; });
+	console.log(gnomesCount);
+	setTimeout( (gnomesCount) => {
+		document.getElementById(`b-row-${gnomesCount}`).className += " show";
+	}, 600, gnomesCount);
+
+	gnomesCount++;
+}
+
+ 
+function updateArray(){
+	gnomesCount = 1;
+	sorthing = true;
+	gnomes = document.getElementsByName('newSet')[0].value.split(" ");
+	bubble.innerHTML = "";
+	gnomes = gnomes.filter(Boolean);
+ 	document.getElementById('fm-box').className = "";
+
+	injectGnomes();
+}
+
+</script>
+</body>
+</html>

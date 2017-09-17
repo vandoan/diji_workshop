@@ -141,8 +141,14 @@ textarea {
     background-color: rgba(249, 191, 59, 1);
 }
 #fm-box.show { opacity: 1; }
+h2 {
+	letter-spacing: 3px;
+    display: inline-block;
+    border-bottom: solid 4px;
+}
 pre {
-	    font-size: .8em;
+    font-size: .8em;
+    margin-top: 5em;
 }
 </style>
 
@@ -162,16 +168,16 @@ pre {
 	<p>Basically, with each loop, you compare the first to the second. If a is larger than b, then flip. Move on to the 2nd digit. Could be a or could be b. Now is it greater than c? Until the end. 
 	</p>
 	<p>
-	If you fliped any, then you need to loop through it again. Once you loop without any flips, then you're done! Easy peasy, no?
+	If you flip any, then you need to do another loop. Once you loop without any flips, then you're done! Easy peasy, no?
 	</p>
 	<p>
-	Play with this do-hicky, and perhaps build one yourself.
+	Play with this do-hicky. The dark blue squares indicate that there was a flip. Insert your on set of numbers to the right if you wish! Perhaps build one yourself :)
 	</p>
 	</div>
 	<div id='bub-button'>
 		<div onclick="sortByBubbleOnce(bubbles)">Next loop</div>
 	</div>
-
+	<div id='b-title'><h2>Bubblesss</h2></div>
 	<div id="bubble" class="bubble">
 	</div>
 	<div id='input-bubble'>
@@ -184,10 +190,13 @@ pre {
 	</div>
 
 	<div class='details'>
+	<h2>The Magic</h2>
 	<p>Essentially, this is what it boils down to.<br>If you copy and paste this into your console, it should run. 
 	</div>
 
 	<pre>
+var bubbles = [3,9,5,3,2,11,42,5,9,22,4,8];
+
 function sortByBubble(array){
 	var sorting = true;
 	var tempHolder = "";
@@ -200,14 +209,14 @@ function sortByBubble(array){
 		  array[i] = array[i + 1];		//     Replace the 1st with the 2nd digit
 		  array[i + 1] = tempHolder;		//     Replace the 2nd with the 1st
 		  sorting = true;			//     Indicate that a switch occured
-		}					//     And another while loop will run
+		}					//     and another while loop will run
 	}						
 							
 	console.log(array);
-	} while(sorting);	// if sorting = false, a clean pass, done
+	} while(sorting);	// If sorting = false, a clean pass! Done.
 }
 
-sortByBubble(testArray);
+sortByBubble(bubbles);
 
 	</pre>
 

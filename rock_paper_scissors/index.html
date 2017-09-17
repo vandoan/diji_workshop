@@ -1,7 +1,7 @@
 <!HTML>
 <head>
 <title>Diji workshop</title>
-<link rel="icon" type="image/png"  href="images/scissor.ico" />
+<link rel="icon" type="image/png"  href="/images/scissor.ico" />
 <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 <style>
@@ -94,21 +94,21 @@ body {
 .rock-img {
 	width: 186px;
     height: 140px;
-	background-image: url(/images/rock.png);
+	background-image: url(/images/icons/rock.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 .paper-img {
 	width: 120px;
     height: 120px;
-	background-image: url(/images/envelope.png);
+	background-image: url(/images/icons/envelope.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 .scissor-img {
 	width: 130px;
     height: 130px;
-	background-image: url(/images/scissor.png);
+	background-image: url(/images/icons/scissor.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
@@ -125,13 +125,13 @@ body {
 #wind.up {
     width: 95px;
     height: 165px;
-    background-image: url(/images/wind_up.png);
+    background-image: url(/images/icons/wind_up.png);
     background-repeat: no-repeat;
     background-size: contain;
     margin: 20px auto 0;
 }
-#wind.left { background-image: url(/images/wind_left.png); }
-#wind.right { background-image: url(/images/wind.png); }
+#wind.left { background-image: url(/images/icons/wind_left.png); }
+#wind.right { background-image: url(/images/icons/wind.png); }
 #wind.right, #wind.left {
     width: 150px;
     height: 90px;
@@ -144,6 +144,13 @@ body {
 }
 #user.winner, #robot.winner {
 	background-color: coral;
+}
+.tool-text {
+	opacity: .1;
+    margin-top: 1em;
+    font-size: 0.5em;
+    word-spacing: 7px;
+    letter-spacing: 3px;
 }
 
 .footer {
@@ -176,9 +183,10 @@ body {
 		<div class='error-msg'></div>
 		<div id='message'></div>
 		<div class='choices'>
-			<div class='rock rps-img' value=0><img src='/images/rock.png'></div>
-			<div class='paper rps-img' value=1><img src='/images/envelope.png'></div>
-			<div class='scissor rps-img' value=2><img src='/images/scissor.png'></div>
+			<div class='rock rps-img' value=0><img src='/images/icons/rock.png'></div>
+			<div class='paper rps-img' value=1><img src='/images/icons/envelope.png'></div>
+			<div class='scissor rps-img' value=2><img src='/images/icons/scissor.png'></div>
+			<div class='tool-text'>Select a tool of destruction.</div>
 		</div>
 	</div>
 
