@@ -1,0 +1,12 @@
+Arrays
+
+Array.prototype.map()
+
+delete an element
+
+eval(), what does it do?
+
+onkeypress='return event.charCode >= 48 && event.charCode <=57 || event.charCode == 32'name="newSet"
+
+
+passing a var into a setTimeout
