@@ -17,9 +17,12 @@ a {
 	visibility: hidden;
 }
 a:hover { opacity: .3; }
-a .article:hover { opacity: 1; /*filter: grayscale(40%);*/ background-color: rgba(255,215,0,1); }
-a .article.no-hov-eff:hover { background-color: initial; }
-body
+
+.article.hov-gold:hover {
+	background-color: gold;
+}
+
+h1 { font-size: 1.4em; }
 .opac-1 { background-color: rgba(0,0,0,0.01); }
 .opac-15 { background-color: rgba(0,0,0,0.015); }
 .opac-2 { background-color: rgba(0,0,0,0.02); }
@@ -50,20 +53,18 @@ body
 }
 .content-view {
     margin-top: 40px;
+	text-align: center;
 }
 .column {
 	vertical-align: top;
-	width: 31%;
+	width: 27%;
 	margin: 1%;	
 	display: inline-block;
 } 
 .article {
+	position: relative;
 	transition: all .3s;
-	padding-bottom: 10px;
     margin-bottom: 30px;
-}
-.article.gold:hover {
-	background-color: gold;
 }
 .a-content{ 
 	padding: 16px; 
@@ -104,6 +105,16 @@ img {
 	display: block;
     text-align: center;
 }
+.gradi-bot {
+    height: 60px;
+	gradient-editor/#ffffff+0,ffffff+100&0+5,0+5,1+99 */
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,1) 99%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 5%,rgba(255,255,255,1) 99%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 5%,rgba(255,255,255,1) 99%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+
 
 .ideas .leaf {
     width: 100px;
@@ -200,7 +211,7 @@ img {
 	background-image: url(./images/icons/ruler_gold.png);
 }
  
-.card-1-1 img { width: 150px; margin-top: 16px; margin-bottom: 30px; opacity: .8; }
+.card-1-1 img { width: 150px; margin-top: 16px; margin-bottom: 30px; opacity: .85; }
 .card-1-3 img { width: 100px; margin-top: 16px; }
 .card-1-4 img { width: 90px; }
 .card-1-5 img { margin: 30px auto 40px; }
@@ -217,6 +228,7 @@ img {
 .card-2-6 img { width: 86px; margin-bottom: 20px;}
 .card-2-7 img { width: 80px; margin: 2em auto;}
 .card-2-8 img { width: 90px; margin: 1em auto;}
+.card-2-9 img { width: 100px; }
 
 .card-3-1 img { width: 150px; padding-left: 12px; }
 .card-3-2 img { width: 80px; }
@@ -245,53 +257,58 @@ img {
 		<div class="content-view">
 			<div class="column col-1">
 				<a href='/worn_weather'>
-					<div class='article opac-2 card-1-8'>
+					<div class='article opac-1 card-1-8 hov-gold'>
 						<div class='a-content'>
 							<div class='a-img'><img src="./worn_weather/images/wear/poncho.png"/></div>
 							<div class='header'>Worn<br>Weather</div>
 							<div class='dek'>Connected to a live api, this app gives you the weather for a random international city and a U.S. city. Insert your own zip code to see what you should wear.</div>
 						</div>
+						<div class='gradi-bot'></div>
 					</div>
 				</a>
 
 				<a href='http://theweek.com/quizzes' target="_blank">
-					<div class='article opac-4 card-1-1'>
+					<div class='article opac-4 card-1-1 hov-gold'>
 						<div class='a-content'>
 							<div class='a-img'><img src="./images/theweek_quiz.png"/></div>
 							<div class='header'>The Week <br> Interactive Quiz</div>
 							<div class='dek'>A long project that involved the collaboration of several individuals from various departments. The questions and answers and other data come from an api call, and the quiz runs on the client side. Quizzes seem simple to build, but this one has so many layers and things that runs under the hood.</div>
 						</div>
+						<div class='gradi-bot'></div>
 					</div>
 				</a>
 
 				<a href='/crime'>
-				<div class='article'>
+				<div class='article hov-gold'>
 					<div class='a-content opac-1'>
 						<div class='a-img'><img src="./images/crime_d3.png"/></div>
 						<div class='header'>Dynamic crime map with D3</div>
 						<div class='dek'>A project to get one's toes wet. Using JSON and D3 to show crime over time, showing it's movement and concentration or dilution.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
-				<div class='article ruler no-hov-eff opac-4 card-1-3'>
+				<div class='article ruler opac-4 card-1-3'>
 					<div class='a-content'>
 						<div class='a-img'><div class='ruler-img'></div></div>
 						<div class='header'>In-House and <br>Out-of-House <br>Web Designers</div>
 						<div class='dek'>Lucky me, I was able to work on two relaunches of highly trafficed sites, each often getting millions of views each day. On one, I worked with out-house-developers and the other, the company got their own. More about the experience... Coming soon.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
-				<div class='article opac-2 card-1-4'>
+				<div class='article opac-2 card-1-4 hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/icons/email.png"/></div>
 						<div class='header'>Building an Internal Marketing Form</div>
 						<div class='dek'>Oh, marketing and sales department needs a form for internal and externals requests as well!? Got it. Sounds simple. However, it gets complicated quick. More soon.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
 				<a href="https://www.mediapost.com/publications/article/303451/mental-floss-redesigns-publisher-deutch-discus.html" target="_blank">
-				<div class='article opac-1 card-1-5'>
+				<div class='article opac-1 card-1-5 hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/mentalfloss.png"/></div>
 						<div class='header'>A Rebirth</div>
@@ -300,11 +317,12 @@ img {
 						<br><br>
 						More about this in the Media Post article.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='/rock_paper_scissors'>
-				<div class='article opac-3 card-1-6'>					
+				<div class='article opac-3 card-1-6 hov-gold'>					
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/icons/rock.png"/></div>
 						<div class='header'>Rock, Paper, Scisscor</div>
@@ -313,11 +331,12 @@ img {
 						My take on the ole' fashion game. Taste victory.
 						</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='http://mentalfloss.com/kennections' target='_blank'>
-				<div class='article opac-2 card-1-7'>
+				<div class='article opac-1 card-1-7 hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/icons/glasses.png"/></div>
 						<div class='header'>Kennections Quizzes</div>
@@ -325,41 +344,47 @@ img {
 							 I sure did work on a lot of quizzes. Here's another sort that I developed for Mental Floss.
 						</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 			</div>
 			
 
+
+
+
 			
 			<div class="column col-2">
 				
 				<a href='/surf_ipsum'>
-				<div class='article surf no-hov-eff'>
-					<div class='a-content opac-15 card-2-1'>
+				<div class='article opac-2 surf card-2-1'>
+					<div class='a-content'>
 						<div class='a-img'><div class="surf-img"></div></div>
 						<div class='header'>Surf<br>Ipsum</div>
 						<div class='dek'>Gnarly, dude! JSON, elbow grease, and JavaScript. A page that creates random ipsum with a large surfing vocabulary of jargon, names, gear, places, surf moves, and other  surfin' stuff. 
 						<br><br>
 						Rincon in Puerto Rico. Gotta touch dem sharks. Sick front-zip full suit, bro. Billabong's board shorts are pretty zepherrr.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='/bubble_sort'>
-				<div class='article bubbles no-hov-eff'>
-					<div class='a-content opac-15 card-2-7'>
+				<div class='article bubbles opac-15'>
+					<div class='a-content card-2-7'>
 						<div class='a-img'><div class='bubbles-img'></div></div>
 						<div class='header'>Bubble<br>Sort</div>
 						<div class='dek'>Bubble, bubble, bubble. A classic sort and one you can play with. Insert your own set of numbers and watch it bubble.
 						</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='http://theweek.com/articles/531362/welcome-new-theweekcom' target='_blank'>
-				<div class='article'>
-					<div class='a-content opac-25 card-2-2'>
+				<div class='article opac-25 hov-gold'>
+					<div class='a-content card-2-2'>
 						<div class='a-img'><img src="./images/workAndCo.png"/></div>
 						<div class='header'>Work and Co</div>
 						<div class='dek'>
@@ -367,56 +392,62 @@ img {
 						<br><br>After a lengthy process, Work and Co, a digital product agency, completed the new design for The Week's website. With a small and agile team and while working to support ad campaigns and another large website, we were able to quickly build and deliver the new website at the beginning of 2015. 
 						<br><br>The Week is one of the few growing print magazines in America and has a substantial following in Europe. It often gets over a million views a day.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='/binary_search'>
-				<div class='article'>
-					<div class='a-content opac-25 card-2-3'>
+				<div class='article opac-1 hov-gold'>
+					<div class='a-content card-2-3'>
 						<div class='a-img'><img src="./images/icons/wig.png"/></div>
 						<div class='header'>Binary Search</div>
 						<div class='dek'>Applying binary search on the name of old ladies. A JavaScript project that allows the user to search a set of names, one loop at a time.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='/mailchimp'>
-				<div class='article'>
-					<div class='a-content opac-1 card-2-4'>
+				<div class='article opac-3 hov-gold'>
+					<div class='a-content card-2-4'>
 						<div class='a-img'><img src="./images/icons/chimp.png"/></div>
 						<div class='header'>Mailchimp Templates</div>
 						<div class='dek'>At least a hundred hours were spent developing Mailchimp templates, a total of 7 different ones. One could go bananas from that. Responsiveness, email clients (MS OUTLOOK!!!),  Api's and automation, and more challenges, but necessary for the 100 of thousands of emails that goes out each day.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href='/gnome_sort'>
-				<div class='article gnome no-hov-eff'>
-					<div class='a-content opac-4 card-2-8'>
+				<div class='article gnome opac-1'>
+					<div class='a-content card-2-8'>
 						<div class='a-img'><div class='gnome-img'></div></div>
-						<div class='header'>The<br>Gnome Way</div>
+						<div class='header'>Way of<br>the Gnomes</div>
 						<div class='dek'>Is this a great sort? Gnooome wayyy. But it works. Another interactive sort to show you how gnomes sort things in the wild.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<a href="http://mentalfloss.com/photos/84917/11-amazing-things-see-and-do-iceland" target="_blank">
-				<div class='article'>
-					<div class='a-content opac-4 card-2-5'>
+				<div class='article opac-15 hov-gold'>
+					<div class='a-content card-2-5'>
 						<div class='a-img'><img src="./images/icons/mountains.png"/></div>
 						<div class='header'>An Interactive<br>Gallery Page</div>
 						<div class='dek'>Working closely with a web designer, we built this page type to display high def images. A little tricky with the back-end, but eventually, we got 'er done. <br><br>The peice was one of the first in the initial development of the new Mental Floss.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
-				<a href='/ruby_panther'>
-				<div class='article'>
-					<div class='a-content opac-1 card-2-4'>
-						<div class='a-img'><img src="./images/icons/chimp.png"/></div>
-						<div class='header'>Flat Design</div>
-						<div class='dek'>This one time time, I became really interested, still am, in flat design and creating flat graphics. And I created some stuff on the ole' Photoshop machine. <br><br>I took a jaguar and transformed into a gem. Take a peek.</div>
+				<a href='/flats'>
+				<div class='article opac-15 hov-gold'>
+					<div class='a-content card-2-9'>
+						<div class='a-img'><img src="./images/icons/jag.png"/></div>
+						<div class='header'>Flats</div>
+						<div class='dek'>This one time time, I became really interested, still am, in flat design and creating flat graphics. And I created some stuff on the ole' Photoshop and Illustrator machines. <br><br>I took a jaguar and transformed it into a gem.<br>Take a peek at some of the creations.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
@@ -431,7 +462,7 @@ img {
 			<div class='article opac-3 list axe'>
 					<div class='a-content card-3-1'>
 						<div class='a-img'><div class='axe-img'></div></div>
-						<div class='header'>Projects</div>
+						<div class='header'><h1>Projects</h1></div>
 						<div class='dek'>Axes are so hip. Breakin' stuff is part of the game. Below, a list of things I broke, fixed, and built.</div>
 						<div class='header list'><a href='/bubble_sort'>Bubble Sort</a></div>
 						<div class='header list'><a href='/worn_weather'>Worn Weather</a></div>
@@ -445,28 +476,31 @@ img {
 						<div class='header list'><a href="http://mentalfloss.com/photos/84917/11-amazing-things-see-and-do-iceland" target="_blank">Interactive photo gallery</a></div>
 						
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
-				<div class='article opac-1 card-3-4 gold'>
+				<div class='article opac-1 card-3-4  hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/icons/toucan.png"/></div>
 						<div class='header'>about<br>dijiworkshop<br>.com</div>
 						<div class='dek center'>The site<br>is home to some of my projects, some hidden, some not, experiments, thoughts, and reads on code and design.
 						<br><br>In many ways, it's my digital workshop.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
-				<div class='article opac-4 card-3-5'>
+				<div class='article opac-4 card-3-5 hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/icons/saw.png"/></div>
 						<div class='header'>me.</div>
 						<div class='dek center'>A programmer<br>who started in highschool, left it, lived life, and then returned to building things. 
 						<br><br>Am as good with a saw (two sememster of carpentry) as I am with a terminal. And yup, I'm still living life.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
 				<a href="mailto:oneamericanoh@gmail.com?Subject=A%20Diji%20Letter">
-				<div class='article opac-1 card-3-6 no-hov-eff plane'>
+				<div class='article opac-1 card-3-6 plane hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><div class='plane-img'></div></div>
 						<div class='header'>Paper plane<br>communication</div>
@@ -475,13 +509,14 @@ img {
 						<br>Send me an <br> ole fashion email.
 						</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
 				<div class='article opac-1 list ideas'>
 					<div class='a-content card-3-2'>
 						<div class='a-img'><div class="leaf"></div></div>
-						<div class='header list'>Ideas</div>
+						<div class='header list'><h1>Ideas<h1></div>
 						<div class='header list'><a href="https://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/" target='_blank'>What is Code?</a></div>
 						<div class='dek'>A great read about being a developer and its industry. A Bloomberg article.</div>
 
@@ -491,9 +526,10 @@ img {
 						<div class='header list'><a href='https://www.nytimes.com/2017/08/24/technology/coding-boot-camps-close.html?mcubz=3' target='_blank'>As Coding Bootcamps Close, the Field Faces a Reality Check</a></div>
 						<div class='dek'>As someone who has been through one, the demand for programmers and supply was always something of curiousity.</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
-				<div class='article opac-3 list'>
+				<div class='article opac-3 list hov-gold'>
 					<div class='a-content card-3-3'>
 						<div class='a-img'><img src="./images/icons/scissor.png"/></div>
 						<div class='header'>Designs</div>
@@ -503,10 +539,11 @@ img {
 						<div class='header list'><a href='https://blogs.scientificamerican.com/at-scientific-american/welcome-to-the-new-scientificamerican-com/' target='_blank'>Scientific American</a></div>
 						<div class='header list'><a href="http://lonelyplanet.com" target="_blank">Lonely Planet</a></div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 
 				<a href='https://blogs.scientificamerican.com/at-scientific-american/welcome-to-the-new-scientificamerican-com/' target='_blank'>
-				<div class='article opac-1 card-3-7'>
+				<div class='article opac-1 card-3-7 hov-gold'>
 					<div class='a-content'>
 						<div class='a-img'><img src="./images/scientificamerican.png"/></div>
 						<div class='header'>Almost an <br>Art Gallery</div>
@@ -516,6 +553,7 @@ img {
 							 Click through to read the effort behind the redesign. 
 						</div>
 					</div>
+					<div class='gradi-bot'></div>
 				</div>
 				</a>
 
@@ -530,6 +568,10 @@ img {
 	<img src='./images/icons/leaf_gold.png' />
 	<img src='./images/icons/board_up_gold.png' />
 	<img src='./images/icons/ruler_gold.png' />
+	<img src='./images/icons/axe_gold.png' />
+	<img src='./images/icons/plane_gold.png' />
+	<img src='./images/icons/gnome_gold.png' />
+	<img src='./images/icons/bubbles_gold.png' />
 </div>
 </body>
 </html>
