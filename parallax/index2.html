@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+
+
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Simple Sliding Panel</title>
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+ 
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $(".btn-slide").click(function(){
+
+        $("#panel").slideToggle("slow");
+
+        $(this).toggleClass("active"); return false;
+
+    });
+
+});
+
+</script>
+
+ 
+
+<style type="text/css">
+
+.cbp-spmenu {
+    background: #47a3da;
+    position: fixed;
+}
+ 
+.cbp-spmenu h3 {
+    color: #afdefa;
+    font-size: 1.9em;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    background: #0d77b6;
+}
+ 
+.cbp-spmenu a {
+    display: block;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 300;
+}
+ 
+.cbp-spmenu a:hover {
+    background: #258ecd;
+}
+ 
+.cbp-spmenu a:active {
+    background: #afdefa;
+    color: #47a3da;
+}
+
+body {
+
+    margin: 0 auto;
+
+    padding: 0;
+
+    width: 570px;
+
+    font: 75%/120% Arial, Helvetica, sans-serif;
+
+}
+
+a:focus { outline: none; }
+
+#panel {
+
+    background: #fff;
+
+    height: 200px;
+
+    display: none;
+
+}
+
+.slide {
+
+    margin: 0;
+
+    padding: 0;
+
+    /*border-top: 4px solid #010103;*/
+
+    background: url('btn-slide.gif') no-repeat center top;
+
+}
+
+.slide:hover {
+
+    background: url('btn-slideOver.gif') no-repeat center top;
+
+}
+
+.btn-slide {
+
+    background: url('white-arrow.gif') no-repeat right -50px;
+
+    text-align: center;
+
+    width: 144px;
+
+    height: 31px;
+
+    padding: 10px 10px 0 0;
+
+   margin: 0 auto;
+
+    display: block;
+
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+
+    color: #000;
+
+    text-decoration: none;
+
+}
+
+.active {
+
+    background-position: right 12px;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+ 
+
+<div id="panel">
+
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <h3>Menu</h3>
+    <a href="#">Celery seakale</a>
+    <a href="#">Dulse daikon</a>
+    <a href="#">Zucchini garlic</a>
+    <a href="#">Catsear azuki bean</a>
+    <a href="#">Dandelion bunya</a>
+    <a href="#">Rutabaga</a>
+</nav>
+</div>
+
+ 
+
+<p class="slide"><a href="#" class="btn-slide">Sliding Panel&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+
+ 
+
+</body>
+
+</html>
