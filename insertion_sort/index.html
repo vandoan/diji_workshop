@@ -1,0 +1,341 @@
+<!HTML>
+<head>
+<title>Diji Workshop</title>
+	<link rel="icon" type="image/png"  href="/images/scissor.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Annie+Use+Your+Telescope|Shadows+Into+Light" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+
+<style>
+.main-view {
+	width: 700px;
+	margin: 40px auto 10em auto;
+	font-family: 'Playfair Display', serif;
+}
+.title {
+	opacity: .85;
+	font-size: 5.6em;
+    letter-spacing: -1px;
+    margin-bottom: 0.7em;
+}
+a { text-decoration: none; color: #000; transition: all .3s; }
+a:hover { opacity: .7; }
+.diji {
+    font-size: 12px;
+    margin-left: 21em;
+    margin-top: -8px;
+    letter-spacing: 3.3px;
+}
+.bubble {
+    margin-left: -10px;
+    overflow: hidden;
+    transition: all .7s;
+    padding-bottom: 5em;
+}
+.row {
+	opacity: 0;
+	transition: all 1s;
+}
+.row.show { opacity: 1; }
+.row div {
+    height: 21px;
+    min-width: 15px;
+    font-weight: 900;
+    font-size: 1.1em;
+    margin: 10px 10px;
+    text-align: center;
+    letter-spacing: 0px;
+    display: inline-block;
+    color: rgba(0,0,0,0.8);
+    background-color: rgba(249, 191, 59, 1);
+    padding: 0.4em 0.6em 0.4em 0.5em;
+}
+.row.pass div {
+	color: green;
+}
+.row .switched {
+	color: #FFFFFF;
+    background-color: rgba(52, 73, 94, 0.9);
+}
+.row .examined {
+	color: #FFFFFF;
+    background-color: coral;
+}
+#submit, #bub-button {
+	right:0;
+	top:8em;
+	opacity: .7;
+	position: fixed;
+    font-size: 0.9em;
+	font-weight: 900;
+	transition: all .4s;
+	display: inline-block;
+    border-radius: 3px 0 0 3px;
+    border: solid 3px rgba(0,0,0,0.8);
+	border-right: none;
+}
+#bub-button div {
+	cursor: pointer;
+    font-size: 1.1em;
+    padding: 7px 22px;
+    letter-spacing: 2px;
+    background-color: rgba(245, 171, 53,0.9);
+}
+#bub-button:hover { opacity: 1; }
+
+#input-bubble {
+    right: 0;
+    top: 14em;
+	position: fixed;
+}
+textarea {
+	border: 0;
+    padding: 1em;
+	height: 100%;
+    width: 100px;
+    height: 100px;
+    font-size: 1em;
+    font-weight: 900;
+    border: solid 3px rgba(0,0,0,0.7);
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+    vertical-align: middle;
+    font-family: 'Playfair Display', serif;
+}
+#submit {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 11px;
+    position: initial;
+    text-align: center;
+    letter-spacing: 3px;
+    background-color: rgba(245, 171, 53,0.9);
+}
+#submit:hover { opacity: 1; cursor: pointer; }
+.input-msg {
+    width: 80px;
+	opacity: 0.6;
+    float: right;
+    margin: 10px;
+    font-size: 0.6em;
+    text-align: right;
+    line-height: 1.7em;
+    letter-spacing: 1px;
+}
+.intro {
+    opacity: 0.9;
+    width: 500px;
+    font-size: 0.9em;
+    line-height: 1.6em;
+    margin: 0 auto 8em 0;
+    letter-spacing: 1.3px;
+}
+#fm-box {
+	opacity: 0;
+    margin-bottom: 10em;
+    margin-left: 0.6em;
+	transition: all .7s;
+}
+.final-msg {
+    margin: auto;
+    font-size: 1.6em;
+    font-weight: 700;
+    border-radius: 3px;
+    letter-spacing: 4px;
+    padding: 0.6em 3.3em;
+    display: inline-block;
+    border: 3px solid rgba(0,0,0,0.7);
+    background-color: rgba(249, 191, 59, 1);
+}
+#fm-box.show { opacity: 1; }
+h2 {
+	letter-spacing: 3px;
+    display: inline-block;
+    border-bottom: solid 4px;
+}
+pre {
+    font-size: .8em;
+    margin-top: 5em;
+}
+.blueBox, .coralBox {
+    width: 26px;
+    height: 26px;
+    margin: 17px 10px 0 40px;
+    display: inline-block;
+}
+.blueBox {
+	background-color: rgba(52, 73, 94, 0.9);
+}
+.coralBox {
+	background-color: coral;
+}
+.bbtext, .crltext {
+    opacity: 0.2;
+    font-size: 0.8em;
+    margin-top: 10px;
+    padding-top: 11px;
+    vertical-align: top;
+    letter-spacing: 1.7px;
+    display: inline-block;
+}
+#b-title h2 {
+	opacity: .8;
+    margin-top: 0;
+    font-size: 2.2em;
+    margin-right: 1.2em;
+    vertical-align: top;
+}
+</style>
+
+</head>
+
+<body>
+<div class='main-view'>
+	<div class='title'>
+		<div>Insertion Sort</div>
+		<div class='diji'><a href='/'>Diji workshop</a></div>
+	</div>
+
+	<div class='intro'>
+
+
+	<p>
+	This sort is simple. 
+	<br>- Start with the second digit and decide if before or after.
+	<br>- Next, go to the third digit and go through the previous digits starting from the beginning and once it reaches a number that it's greater than, insert it.
+	<br>- Repeat for the rest of the number.
+	</p>
+	
+	</div>
+	<div id='bub-button'>
+		<div onclick="sortByInsertion(digits)">Next loops</div>
+	</div>
+	<div id='b-title'>
+		<h2>Insert Away!!!</h2>
+		<div class='blueBox'></div><div class='bbtext'>a switch</div> <div class='coralBox'></div><div class='crltext'>a comparison</div>
+	</div>
+	<div id="bubble" class="bubble">
+	</div>
+	<div id='input-bubble'>
+		<textarea min="5" onkeypress='return event.charCode >= 48 && event.charCode <=57 || event.charCode == 32'name="newSet" type="number" placeholder='3 9 5 3 2 11 42 5 9 22'></textarea>
+		<div onclick="updateArray()" id="submit">New Set</div>
+		<div class='input-msg'>*suggest<br>7 or fewer numbers</div>
+	</div>
+	<div id='fm-box'>
+		<div class='final-msg'>No mas!</div>
+	</div>
+
+	<div class='details'>
+	<h2>The Magic</h2>
+	<p>Essentially, this is what it boils down to.<br>If you copy and paste this into your console, it should run. 
+	</div>
+
+	<pre>
+const testArray = [12, 11, 13, 5, 6];
+
+function sortByInsertion(array){
+  for( let i = 1; i < array.length; i++){   // for each number after the first
+    for(let j = 0; j < i; j++){ 	    //   compare it to the previous numbers
+      if(array[i] < array[j]){		    //    If it's less, add it before		
+	array.splice(j,0,array[i]);	    //    Move i to j's spot
+	array.splice(i+1,1);
+      }
+    }
+  }
+}
+
+sortByInsertion(testArray);
+
+	</pre>
+
+</div>
+
+
+<script>
+var currentIndex = 1;
+var digitsRow = 1;
+var sorting = true;
+var digits = [5,4,9,1,7,18,9,5];
+var bubble = document.getElementById('bubble');
+
+
+function injectDigits(){	// initial injection
+	bubble.innerHTML += `<div id="b-row-${digitsRow}" class="row">`;
+	digits.forEach( (elem) => {document.getElementById(`b-row-${digitsRow}`).innerHTML += `<div>${elem}</div>`; });
+	console.log(digitsRow);
+	setTimeout( (digitsRow) => {
+		document.getElementById(`b-row-${digitsRow}`).className += " show";
+	}, 600, digitsRow);
+
+	digitsRow++;
+
+}
+injectDigits();
+
+ 
+function updateArray(){
+	currentIndex = 1;
+	sorting = true;
+	digits = document.getElementsByName('newSet')[0].value.split(" ");
+	bubble.innerHTML = "";
+	digits = digits.filter(Boolean);
+ 	document.getElementById('fm-box').className = "";
+
+	injectDigits();
+}
+
+  
+
+
+function sortByInsertion(array){
+  var updatedPosition = 0;
+  if(sorting == false){ console.log('No mas.'); return; }
+	bubble.innerHTML += `<div id="b-row-${digitsRow}" class="row"></div>`;
+
+    for(var j = 0; j < currentIndex; j++){ 	   //   compare it to the previous numbers
+      if(parseInt(array[currentIndex]) < parseInt(array[j])){		  //    if it's less, add it before		
+	// Move i to j's spot
+ 		updatedPosition = j;
+		array.splice(j,0,array[currentIndex]);
+		array.splice(currentIndex + 1,1);
+		break;
+      } else {
+      	updatedPosition = -1;
+      }
+    }
+
+	digits.map( (e, index) => { // populate row
+		if(index == updatedPosition && updatedPosition > -1) {
+			document.getElementById(`b-row-${digitsRow}`).innerHTML += `<div class="switched">${e}</div>`; 
+		} else if (index == currentIndex) {
+			document.getElementById(`b-row-${digitsRow}`).innerHTML += `<div class="examined">${e}</div>`
+		} else {
+			document.getElementById(`b-row-${digitsRow}`).innerHTML += `<div>${e}</div>`; 
+		}
+	});
+
+	setTimeout( (digitsRow) => {
+		document.getElementById(`b-row-${digitsRow}`).className += " show";
+	}, 600, digitsRow);
+
+
+	if(currentIndex == array.length - 1){
+		sorting = false;
+		document.getElementById('fm-box').className = "show";
+	}
+	
+
+	console.log(array);
+	digitsRow++;
+	currentIndex++;
+	console.log(currentIndex);
+
+}
+
+// sortByInsertion(testArray);
+
+
+
+</script>
+</body>
+</html>
