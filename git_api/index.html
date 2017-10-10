@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<head>
+<title>Diji workshp</title>
+<link rel="icon" type="image/png"  href="/images/scissor.ico" />
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+<style>
+body {
+	padding-bottom: 90px;
+}
+.main-view {
+    text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+h3 { transition: all .3s; }
+.hide { opacity: 0; }
+a {
+	color: #000;
+	opacity: 0.8;
+	text-decoration: none;
+	transition: all .4s;
+}
+a:hover { opacity: 0.5; }
+.header-view {
+		margin: 40px 0 20px;
+}
+
+.diji {
+	font-size: 0.8em;
+    line-height: 1em;
+    margin: -1.4em 0 7em;
+    letter-spacing: 3px;
+    padding-left: 20em;
+}
+.diji span { font-size: 0.8em; }
+.title {
+	font-size: 4em;
+    padding-bottom: 10px;
+	letter-spacing: 0.1em;
+}
+.get-btn {
+    color: #FFFFFF;
+    border-radius: 10%;
+    vertical-align: top;
+    letter-spacing: 2px;
+    cursor: pointer;
+    padding: 5px 8px 7px;
+    margin: 3px 0px 0px 8px;
+    background-color: darkseagreen;
+}
+.get-btn:hover { opacity: .7; }
+
+.get-btn, input {
+	transition: all .4s;
+	display: inline-flex;
+}
+.input ::placeholder {
+	opacity: .6;
+	font-size: 12px;
+	padding-bottom:3px;
+	letter-spacing: 2px;
+}
+.git-name {
+	opacity: .9;
+	font-size: 1.7em;
+    padding-top: 40px;
+    letter-spacing: 2px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+.git-loc {
+    font-size: 0.7em;
+    letter-spacing: 2px;
+}
+.git-bio {
+    padding: 8px;
+    font-size: 0.6em;
+    letter-spacing: 2px;
+}
+.git-input {
+    height: 30px;
+    font-size: 1.2em;
+    line-height: 29px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 3px 0 3px 0;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.7);
+    border: 1px solid rgba(0,0,0,0.2);
+}
+.git-repos {
+    line-height: 1.8em;
+	letter-spacing: 2px;
+}
+.git-repos > a:hover { opacity: .7; }
+.userData {
+    width: 600px;
+    margin: 4em auto 0;
+    display: flex;
+}
+.column {
+	flex: 1;
+    margin: 0 3px;
+    padding: 16px 0;
+	min-height: 100px;
+    border-radius: 3%;
+    text-align: center;
+	display:inline-flex;
+    transition: all .3s;
+	border: solid 1px rgba(0,0,0,.05);
+}
+
+.git-content {
+	margin: auto;
+    font-family: 'Abril Fatface', cursive;
+}
+.git-ava {
+    margin: 20px auto 10px;
+	text-align: center;
+}
+.git-ava img {
+	width: 100px;
+    border-radius: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div>
+</div>
+<div class="main-view">
+
+
+	<div class="header-view">
+		<div class="title">Git 'er done</div>
+		<a href="/"><div class="diji">Diji workshop</div></a>
+	</div>
+
+	<div class='intro'>
+	</div>
+
+	<div class='git-box'>
+		<div class='gitImg'></div>
+		<div class='input'>
+			<input 
+			  class='git-input'
+			  type='text' 
+			  placeholder='octocat' 
+			  value = 'octocat'/>
+			<div onclick="getGit();" class='get-btn'>get</div>
+		</div>
+	</div>
+
+	<div class='userData'>
+		<div class='column col-1 hide'>
+			<div class='git-content'>
+				<div class='git-ava'></div>				
+			</div>
+
+		</div>
+
+		<div class='column col-2 hide'>
+			<div class='git-content'>
+				<h1 class='git-name'></h1>
+				<h3 class='git-comp'></h3>
+				<h3 class='git-loc'></h3>
+				<h5 class='git-bio'></h5>
+			</div>
+		</div>
+
+		<div class='column col-3 hide'>
+			<div class='git-content'>
+				<h3> Repos </h3>
+				<div class='git-repos'></div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<script>
+
+// https://api.github.com/users/octocat
+
+const gitApi = 'https://api.github.com/users';
+var userData = '';
+
+function getGitUser(userName) {
+  var xhttp = new XMLHttpRequest();
+
+  handleHideColumns("hide");
+
+  xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+  		userData = JSON.parse(this.responseText);
+  		
+  		setTimeout( () => { 
+	  		fillDetails();
+	  		getRepo(userName);
+	  	}, 400);
+  	}
+  };
+  xhttp.open("GET", `${gitApi}/${userName}`, true);
+  xhttp.send();
+}
+
+function getRepo(userName) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+  		repos = JSON.parse(this.responseText);
+  		fillRepos(repos);
+  	}
+  };
+  xhttp.open("GET", `${gitApi}/${userName}/repos?per_page=5`, true);
+  xhttp.send();
+}
+
+
+function fillDetails(){
+
+	document.querySelector('.git-ava').innerHTML = `<img src="${userData.avatar_url}" />`;
+	document.querySelector('.git-name').innerHTML = userData.name;
+	document.querySelector('.git-comp').innerHTML = userData.company;
+	document.querySelector('.git-loc').innerHTML = userData.location;
+	document.querySelector('.git-bio').innerHTML = userData.bio;
+}
+
+function fillRepos(repos) {
+	document.querySelector('.git-repos').innerHTML = "";
+
+	repos.forEach(repo => {
+		document.querySelector('.git-repos').innerHTML +=
+		  `<a href="${repo.html_url}" target="_blank"><div>${repo.name}</div></a>`;
+	});
+
+	setTimeout( () => {
+		handleHideColumns("show");
+	}, 400);
+}
+
+function handleHideColumns(hide){
+	document.querySelectorAll('.column').forEach( column => {
+		if (hide === "hide"){
+			column.classList.add('hide');
+		} else {
+			column.classList.remove('hide');
+		}
+	});
+}
+
+function getGit() {
+	const inputName = document.querySelector('.git-input').value;
+	getGitUser(inputName);
+}
+
+
+</script>
+</body>
+
+</html>
